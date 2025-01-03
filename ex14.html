@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>이미지 출력:img 태그</title>
+    <!-- 이미지 사이트:픽사베이 사이트 -->
+    <!-- imge1.jpg :Landscape 4:3 비율 -->
+    <!-- imge2.jpg :Portrate 3:4 비율 -->
+    <style>
+      #play-button {
+        background-image: url("img/play-button.png");
+        background-repeat: no-repeat;
+        width: 128px;
+        height: 128px;
+        border: none;
+        background-color: transparent;
+      }
+      button {
+        border: none;
+        background-color: transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="img/image1.jpg" alt="카페이미지1" width="500" />
+    <!-- 1280 x 853 -->
+    <!-- 500 x 333 -->
+    <!-- 계산법 = 1280*853:500*x ,1200x:500*853, x=333  -->
+    <img src="img/image2.jpg" alt="카페이미지2" height="500" width="375" />
+    <!-- 900 x 1280 -->
+    <!-- 900:1280=x:500, 1280 * x = 900 * 500 , x=352 -->
+    <br />
+    <!-- 이미지 다운로드 링크 걸기 -->
+    <a href="#" download="img/image1.jpg">img1.jpg</a>
+    <br />
+    <!-- 버튼 아이콘 사이트 :flaticon.com -->
+    <button type="button">
+      <img src="img/play-button.png" alt="버튼" />
+    </button>
+    <button id="play-button"></button>
+    <!-- 더미 이미지:이미지가 준비 안된 상태에서 배치/구조 잡을떄 -->
+    <img src="http://via.placeholder.com/600x300" />
+    <img src="http://via.placeholder.com/500x800" />
+  </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+    <style>
+      fieldset {
+        width: 500px; /* 원하는 넓이로 설정 */
+      }
+    </style>
+  </head>
+  <body>
+    <h3>설문조사</h3>
+    <fieldset>
+      <legend>성별과 나이를 입력하세요</legend>
+      <label for="sex">성별: </label>
+      <input type="radio" id="man" name="gender" />남자
+      <input type="radio" id="wom" name="gender" />여자<br />
+      <label for="num">나이: </label>
+      <input type="text" id="number" />
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>관심 분야를 선택 하세요.(1개 이상)</legend>
+      <input type="checkbox" id="dig" />디지털 콘텐츠
+      <input type="checkbox" id="web" />웹프로그래밍
+      <input type="checkbox" id="dig" />데이터베이스
+      <input type="checkbox" id="dig" />전자출판
+    </fieldset>
+    <br />
+    <fieldset>
+      <legend>다음 문항에 대해 5점 척도로 답하세요</legend>
+      본 세미나의 주제는 만족스러운가?
+      <span>1</span>
+      <input type="range" min="1" max="5" value="3" />
+      <span>5</span> <br />
+      본 세미나의 초청강사는 만족스러운가?
+      <span>1</span>
+      <input type="range" min="1" max="5" value="3" />
+      <span>5</span> <br />
+      본 세미나의 강의시간 만족스러운가?
+      <span>1</span>
+      <input type="range" min="1" max="5" value="3" />
+      <span>5</span>
+    </fieldset>
+    <form>
+      <label for="comments">기타 의견사항</label>
+      <br />
+      <textarea
+        id="comments"
+        name="comments"
+        rows="4"
+        cols="50"
+        placeholder="의견을 적으세요"
+      ></textarea>
+      <br />
+
+      <!-- 간격을 주기 위해 버튼 그룹에 클래스 추가 -->
+      <div class="button-group">
+        <button type="submit">확인</button>
+        <button type="button" onclick="clearTextarea()">취소</button>
+      </div>
+    </form>
+  </body>
+</html>
