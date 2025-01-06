@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>연습문제 - 그림과 같이 입력양식을 구현하시오.</title>
+  </head>
+  <body>
+    <h2>회원가입 폼</h2>
+    <form action="http://www.member.com" method="get">
+      <label>이름 :</label>
+      <input type="text" placeholder="이름을 입력하세요" /><br />
+      <label>비밀번호 :</label>
+      <input type="password" placeholder="비번을 입력하세요." /><br />
+      <label>핸드폰 :</label>
+      <input type="tel" name="tel" placeholder="핸드폰을 입력하세요" /><br />
+      <label>이메일 :</label>
+      <input type="email" value="" placeholder="이메일을 입력하세요" /><br />
+      <label>성별</label>
+      <!-- name 과 value 값 주의하기 서버에서 name 값을 보고 vlaue 값을 구분함 -->
+      <input type="radio" name="gender" value="man" checked />
+      <label>남성</label>
+      <input type="radio" name="gender" value="wom" />
+      <label>여성</label><br />
+      <label>취미 :</label>
+      <!-- 문자열 배열로 서버에서 받는다 -->
+      <input type="checkbox" name="hobby" id="1" value="hobby1" />
+      <label for="1">걷기</label>
+      <input type="checkbox" name="hobby" id="2" value="hobby2" checked />
+      <label for="2">달리기</label>
+      <input type="checkbox" name="hobby" id="3" value="hobby3" />
+      <label for="3">자전거타기</label><br />
+      <label>사는 곳 :</label>
+      <select name="live">
+        <option value="s" selected>서울</option>
+        <option value="g">경기</option>
+        <option value="b">부산</option>
+      </select>
+      <br />
+      <button type="submit" onclick="alert(`회원가입 완료 되었습니다`)">
+        회원가입
+      </button>
+    </form>
+  </body>
+</html>

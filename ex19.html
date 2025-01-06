@@ -6,7 +6,7 @@
     <title>입력태그 종류3</title>
   </head>
   <body>
-    <form action="http://www.myserver.com">
+    <form action="http://www.myserver.com" method="get">
       <!-- type: hidden 숨김 속성, 사용자에게는 보이지 x  -->
       <!-- 서버에는 입력 값이 전달되는 용도 -->
       <input type="hidden" name="hiddenVal" value="게시물 아이디값" />
@@ -20,7 +20,7 @@
       <!-- 수평선 태그 : hr 태그 -->
       <hr />
       <!-- 색상 선택 태그 -->
-      <input type="color" name="color" value="#82F980" />
+      <input type="color" name="color" value="#82F980" /> <br />
       <!-- 색상 표현: 빛의 3원색 -->
       <!-- RGB:R-RED G-GREEN B-BLUE A-ALPHA (투명도)-->
       <!-- 4바이트로 1픽셀 색상을 지정함 RGBA -->
@@ -28,6 +28,34 @@
       <!-- GREEN :1바이트 = 0~255값을표현 = 8bit -->
       <!-- BLUE :1바이트 = 0~255값을표현 = 8bit -->
       <!-- ALPHA: 1바이트 0.0~1.0 :8bit 는 다른 형태로 쓰임 여기선 X-->
+
+      <!-- 날짜 선택 태그 -->
+      <input type="date" name="date" vale="2025-01-06" /> <br />
+      <!-- 날짜 시간 선택 태그 -->
+      <input
+        type="datetime-local"
+        name="datetime"
+        value="2025-01-06T13:07:07"
+      /><br />
+      <!-- email -->
+      <input type="email" nam="email" value="abc@gmail.com" />
+      <!-- email다중선택 -->
+      <input
+        type="emil"
+        name="email"
+        value="abc@gmail.com,123@gmailc.om"
+        multiple
+      /><br />
+      <!-- 달 (month) -->
+      <input type="month" name="month" value="2025-01" /> <br />
+      <!-- 숫자 (number) -->
+      <input type="number" value="10" min="5" max="10" step="1" />
+      <!-- 범위 -->
+      <input type="range" value="1" min="1" max="5" step="1" /><br />
+      <!-- 많은 양의 텍스트를 입력 받을 때 :textarea 태그 -->
+      <textarea name="memo" cols="30" rows="10">
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum libero aperiam nostrum cum excepturi, nobis dolorum, asperiores necessitatibus quod molestiae dignissimos aut totam. Similique quidem laudantium totam perspiciatis. Rerum, et!</textarea
+      >
     </form>
   </body>
 </html>
