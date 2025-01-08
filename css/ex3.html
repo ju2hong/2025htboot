@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>선택자 - 전체선택자,태그선택자</title>
+    <!-- 전체 선택자: * -->
+    <!-- 태그 선택자: HTML 태그명 (ex.h1,p,...) -->
+    <style>
+      * {
+        color: brown;
+      }
+      h1 {
+        color: red;
+      }
+      /* 태그를 여러개 선택 */
+      /* ,는 중요하며 없을시에 h2 ) p 가 되는것임 */
+      h2,
+      p {
+        background-color: yellow;
+      }
+      /* body는 화면 전체를 뜻함 */
+      body {
+        background-color: skyblue;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>제목태그 h1</h1>
+    <h2>제목태그 h2</h2>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ullam vitae
+      earum quis molestias velit similique a, illo id alias quia nesciunt quos
+      culpa. Sunt cumque, provident nulla magnam aut doloremque!
+    </p>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat animi
+      iste consequuntur reiciendis veniam voluptates neque nostrum minima
+      inventore corporis alias quae natus, id magnam, aperiam ut eaque autem
+      accusamus?
+    </p>
+  </body>
+</html>

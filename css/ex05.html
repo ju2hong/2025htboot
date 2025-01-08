@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>태그 선택자와 id,class 선택자 연결</title>
+    <style>
+      h1.select {
+        color: yellowgreen;
+      }
+      h1#header {
+        color: blue;
+      }
+      li#item {
+        background-color: aquamarine;
+      }
+      .item {
+        background-color: yellow;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 class="select">제목태그 h1</h1>
+    <h1 id="header">제목태그 h1</h1>
+    <ul>
+      <li class="select">아이템1</li>
+      <li id="item">아이템2</li>
+      <li class="select">아이템3</li>
+      <!-- 클래스 속성운 요로갸 적용 가능함 -->
+      <li class="select item">아이템4</li>
+    </ul>
+  </body>
+</html>

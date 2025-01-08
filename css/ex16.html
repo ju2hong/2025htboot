@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>n 번째 선택자(상속관계) : nth-of-type</title>
+    <style>
+      /* 안됨 */
+      p:nth-child(1) {
+        color: red;
+      }
+      /* div 밑에 있는 모든 p태그에서 1번째 */
+      div p:nth-of-type(1) {
+        color: blue;
+      }
+      div p:first-of-type {
+        background-color: aqua;
+      }
+      div p:last-of-type {
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>div 아이템</h1>
+      <p>p 아이템1</p>
+      <p>p 아이템2</p>
+      <p>p 아이템3</p>
+    </div>
+  </body>
+</html>
