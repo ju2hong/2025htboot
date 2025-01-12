@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>카카오 로그인</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      #title img {
+        width: 100px;
+        margin-bottom: 0;
+      }
+
+      .login-container {
+        width: 400px;
+        background-color: #fff;
+        padding: 30px;
+        border: 1px solid #ddd;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .login-container input {
+        width: calc(100% - 20px);
+        padding: 10px;
+        margin: 10px 0;
+        border: none;
+        background: none;
+        border-bottom: 1px solid #ddd;
+        outline: none;
+        font-size: 16px;
+      }
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .checkbox-container input[type="checkbox"] {
+        appearance: none; /* 기본 체크박스 스타일 제거 */
+        border: none;
+        width: 20px; /* 원래 크기의 절반 */
+        height: 20px; /* 원래 크기의 절반 */
+        margin-right: 5px; /* 아이콘과 텍스트 간격을 줄이기 위해 원래의 절반 */
+        background-image: url("ico_comm.png"); /* 스프라이트 이미지 경로 */
+        background-repeat: no-repeat;
+        background-position: 0px 0px; /* 아이콘 위치 */
+        background-size: 150px 250px; /* 배경 이미지를 원래의 절반 크기로 설정 */
+      }
+
+      /* 체크된 상태에서 아이콘 위치 변경 */
+      .checkbox-container input[type="checkbox"]:checked {
+        background-position: -25px 0px; /* 체크된 상태에서 아이콘 위치 (원래 위치의 절반) */
+      }
+
+      .checkbox-container label {
+        cursor: pointer; /* 텍스트 클릭 가능하게 설정 */
+        font-size: 15px; /* 텍스트 크기 조정 */
+        line-height: 20px; /* 텍스트 수직 정렬 */
+        color: #666666;
+      }
+
+      .icon_i {
+        width: 20px; /* 원래 크기의 절반 */
+        height: 20px; /* 원래 크기의 절반 */
+        margin-left: 10px; /* 아이콘과 텍스트 간격을 줄이기 위해 원래의 절반 */
+        background-image: url("ico_comm.png"); /* 스프라이트 이미지 경로 */
+        background-repeat: no-repeat;
+        background-position: -130px -108px; /* 아이콘 위치 */
+        background-size: 150px 250px; /* 배경 이미지를 원래의 절반 크기로 설정 */
+      }
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #ffeb00;
+        border: none;
+        border-radius: 4px;
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+      }
+
+      .divider {
+        margin: 20px 0;
+        font-size: 14px;
+        color: #aaa;
+        position: relative;
+      }
+
+      .divider:before,
+      .divider:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 40%;
+        height: 1px;
+        background: #ddd;
+      }
+
+      .divider:before {
+        left: 0;
+      }
+
+      .divider:after {
+        right: 0;
+      }
+
+      .secondary-button {
+        background-color: #f5f5f5;
+        color: #555;
+        margin-top: 10px;
+      }
+
+      .under {
+        display: flex;
+        justify-content: space-between; /* 양 끝으로 정렬 */
+        align-items: center;
+        margin-top: 20px;
+      }
+      .right-links {
+        display: flex;
+        align-items: center;
+        gap: 5px; /* 링크와 "|" 사이의 간격 조정 */
+        color: #666666;
+      }
+      .under a {
+        text-decoration: none;
+        margin: 0 5px;
+        color: #191919;
+        font-size: 12px;
+      }
+      .info-box {
+        margin: 20px 0;
+        text-align: left;
+      }
+
+      .info-image {
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #191919e3;
+      }
+      .footer a {
+        color: #191919e3;
+        text-decoration: none;
+      }
+      .footer span {
+        margin: 0 90px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="title">
+        <img src="logo_kakao.png" alt="카카오 로고" />
+      </div>
+      <div class="login-container">
+        <input
+          type="text"
+          placeholder="카카오메일 아이디, 이메일, 전화번호"
+          aria-label="아이디 입력"
+        />
+        <input
+          type="password"
+          placeholder="비밀번호"
+          aria-label="비밀번호 입력"
+        />
+        <div class="checkbox-container">
+          <input type="checkbox" id="stay-logged-in" />
+          <label for="stay-logged-in">간편 로그인 정보 저장</label>
+          <span class="icon_i"></span>
+        </div>
+        <button>로그인</button>
+        <div class="divider">또는</div>
+        <button class="secondary-button">QR코드 로그인</button>
+        <div class="under">
+          <a href="#" class="left-link">회원가입</a>
+          <div class="right-links">
+            <a href="#">계정 찾기</a>
+            <span>|</span>
+            <a href="#">비밀번호 찾기</a>
+          </div>
+        </div>
+
+        <div class="info-box">
+          <img src="img_bnr_ko.png" alt="Daum ID 안내" class="info-image" />
+        </div>
+      </div>
+      <div class="footer">
+        <a href="#">한국어</a> | <a href="#">이용약관</a> |
+        <a href="#">개인정보 처리방침</a> | <a href="#">고객센터</a>
+        <br />
+        <span>© Kakao Corp.</span>
+      </div>
+    </div>
+  </body>
+</html>
