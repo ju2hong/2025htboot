@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>카카오 로그인 혼자 만들기</title>
+    <style>
+      .title {
+        text-align: center;
+        padding: 50px 0px 8px;
+      }
+      #logo {
+        width: 110px;
+      }
+      /* body 있는건 중앙 정렬함 */
+      body {
+        display: flex;
+        justify-content: center;
+      }
+      /* 아이디와 비밀번호 입력칸 */
+      .cont_login {
+        width: 494px;
+        height: 510px;
+        padding: 20px 0 30px;
+        text-align: center;
+        border: 1px solid #e5e5e5;
+      }
+      #id,
+      #pw {
+        font: 16px Arial, sans-serif;
+        width: 350px;
+        height: 20px;
+        margin-top: 20px;        
+        padding: 9px 0;
+        border: none;
+        outline: none;
+        border-bottom: 2px solid #e5e5e5;
+      }
+      /* 로그인 정보 저장하는 checkbox */
+      .checkbox-container {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin: 10px 80px 0px;
+      }
+      .checkbox-container input[type="checkbox"] {
+        appearance: none; /* 기본 체크박스 스타일 제거 */
+        border: none;
+        width: 20px; /* 원래 크기의 절반 */
+        height: 20px; /* 원래 크기의 절반 */
+        margin-right: 5px; /* 아이콘과 텍스트 간격을 줄이기 위해 원래의 절반 */
+        background-image: url("ico_comm.png"); /* 스프라이트 이미지 경로 */
+        background-repeat: no-repeat;
+        background-position: 0px 0px; /* 아이콘 위치 */
+        background-size: 150px 250px; /* 배경 이미지를 원래의 절반 크기로 설정 */
+      }
+
+      /* 체크된 상태에서 아이콘 위치 변경 */
+      .checkbox-container input[type="checkbox"]:checked {
+        background-position: -25px 0px; /* 체크된 상태에서 아이콘 위치 (원래 위치의 절반) */
+      }
+
+      .checkbox-container label {
+        cursor: pointer; /* 텍스트 클릭 가능하게 설정 */
+        font-size: 15px; /* 텍스트 크기 조정 */
+        line-height: 20px; /* 텍스트 수직 정렬 */
+        color: #666666;
+      }
+
+      .icon_i {
+        width: 20px; /* 원래 크기의 절반 */
+        height: 20px; /* 원래 크기의 절반 */
+        margin-left: 10px; /* 아이콘과 텍스트 간격을 줄이기 위해 원래의 절반 */
+        background-image: url("ico_comm.png"); /* 스프라이트 이미지 경로 */
+        background-repeat: no-repeat;
+        background-position: -130px -108px; /* 아이콘 위치 */
+        background-size: 150px 250px; /* 배경 이미지를 원래의 절반 크기로 설정 */
+      }
+    /* 로그인 버튼 ~ QR 버튼 마진 */
+    .confirm{
+        margin: 30px 0px 0px;
+    }
+    /* 로그인 버튼 구현 */
+    #loginbutton{
+        background-color: #FEE500;
+        border: none;
+        border-radius: 5px;
+        width: 350px;
+        height: 45px;
+        color: #191919;
+        font-size: 15px;
+    }
+    /* 또는 선 구현 */
+    #or{
+        margin: 20px 0;
+        font-size: 14px;
+        color: #828282;
+        position: relative;
+      }    
+      #or:before,
+      #or:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 30%;
+        height: 1px;
+        background: #ddd;
+      }
+      #or:before {
+        left: 0;
+        margin-left: 50px;
+      }
+      #or:after {
+        right: 0;
+        margin-right: 50px;
+      }
+      /* QR 버튼 */
+      #qrlogin{
+        background-color: #f0f0f0f0;
+        border: none;
+        border-radius: 5px;
+        width: 350px;
+        height: 45px;
+        color: #191919;
+        font-size: 15px;
+      }
+      /* info_user */
+      .info_user{
+        margin: 26px 0px 0px;
+        color: #ccc;
+      }
+      #mem{
+        text-decoration: none;
+        font-size: 15px;
+        color: #19191199;
+      }
+      #idfind{
+        text-decoration: none;
+        font-size: 15px;
+        margin-left: 60px;
+        color: #19191199;
+      }
+      #pwfind{
+        text-decoration: none;
+        font-size: 15px;
+        margin-right: 0px;
+        color: #19191199;
+      }
+      /* img */
+      .info-box {
+        margin: 20px 0;
+        text-align: center;
+      }
+      .info-image {
+        width: 80%;
+        height: 80%;
+        border-radius: 5px;
+        background-color: #f0f0f0f0;
+      }
+      /* footer */
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 12px;
+        color: #191919e3;
+        
+      }
+      #footer_text{
+        display: flex;
+        justify-content: space-around; 
+        text-decoration: none;
+        font-size: 15px;
+        margin-right: 0px;
+        color: #00000019;
+      }
+      .footer a {
+        text-decoration: none;
+        color: #828282;
+    }
+      select {
+        outline: none;
+        border: none;
+        color: #828282;
+        font-size: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+      <div class="title">
+        <img src="logo_kakao.png" alt="logo" id="logo" />
+      </div>
+      <form>
+      <div class="cont_login">
+        <label for="id"></label>
+        <input
+          type="id"
+          id="id"
+          placeholder="카카오 메일 아이디, 이메일, 전화번호"
+        />
+        <label for="pw"></label>
+        <input type="password" id="pw" placeholder="비밀번호" />
+        <div class="checkbox-container">
+            <input type="checkbox" id="stay-logged-in" />
+            <label for="stay-logged-in">로그인 상태 유지</label>
+            <span class="icon_i"></span>
+          </div>
+        <div class="confirm">
+        <button id="loginbutton">로그인</button>
+        <div id="or">또는</div>
+        <button id="qrlogin">QR코드 로그인</button>
+        </div>
+        </form>
+        <div class="info_user">
+          <a
+            href="https://accounts.kakao.com/weblogin/create_account/?continue=https%3A%2F%2Fwww.daum.net&lang=ko&showHeader=false#intro"
+           id="mem" >회원가입</a
+          >
+          <a
+            href="https://accounts.kakao.com/weblogin/find_account?continue=https%3A%2F%2Fwww.daum.net&lang=ko&showHeader=false"
+           id="idfind" >계정찾기</a
+          > |
+          <a
+            href="https://accounts.kakao.com/weblogin/find_password?continue=%2Flogin%3Fcontinue%3Dhttps%253A%252F%252Fwww.daum.net&lang=ko&showHeader=false"
+            id="pwfind">비밀번호 찾기</a
+          >
+        </div>
+        <div class="info-box">
+            <img src="img_bnr_ko.png" alt="Daum ID 안내" class="info-image" />
+          </div>
+      </div>
+
+      <div class="footer">
+        <div id="footer_text">
+          <label for="language"></label>
+          <select name="language" id="language">
+            <option value="한국어">한국어</option>
+            <option value="English">English</option>
+            <option value="日本語">日本語</option>
+          </select>
+          |
+          <a href="https://www.kakao.com/policy/privacy?lang=ko"
+            >개인정보 처리방침</a
+          >
+          |
+          <a href="https://www.kakao.com/policy/terms?lang=ko">서비스 약관</a> |
+          <a href="https://cs.kakao.com">고객센터</a>
+        </div>
+
+        <span>© Kakao Corp.</span>
+      </div>
+    </div>
+  </body>
+</html>
