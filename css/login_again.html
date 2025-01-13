@@ -21,7 +21,7 @@
         height: 510px;
         padding: 20px 0 30px;
         text-align: center;
-        border: 1px solid #e5e5e5;
+        border: 2px solid #e5e5e5;
       }
       #id,
       #pw {
@@ -32,7 +32,21 @@
         padding: 9px 0;
         border: none;
         outline: none;
-        border-bottom: 2px solid #e5e5e5;
+        border-bottom: 3px solid #ccc;
+      }
+      /* id 입력시 뜨는 tip */
+      .hint {
+            display: none; /* 기본적으로 숨김 */
+            color: gray;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        #tip{
+          color: red;
+          margin: 5px;
+        }
+      #id:focus + .hint {
+        display: block;
       }
       /* 로그인 정보 저장하는 checkbox */
       .checkbox-container {
@@ -74,6 +88,7 @@
         background-position: -130px -108px; /* 아이콘 위치 */
         background-size: 150px 250px; /* 배경 이미지를 원래의 절반 크기로 설정 */
       }
+    
     /* 로그인 버튼 ~ QR 버튼 마진 */
     .confirm{
         margin: 30px 0px 0px;
@@ -112,7 +127,7 @@
         right: 0;
         margin-right: 50px;
       }
-      /* QR 버튼 */
+      /* QR 로그인 버튼 */
       #qrlogin{
         background-color: #f0f0f0f0;
         border: none;
@@ -122,7 +137,7 @@
         color: #191919;
         font-size: 15px;
       }
-      /* info_user */
+      /* info_user / 회원가입,계정찾기,비밀번호 a태그 */
       .info_user{
         margin: 26px 0px 0px;
         color: #ccc;
@@ -130,21 +145,21 @@
       #mem{
         text-decoration: none;
         font-size: 15px;
-        color: #19191199;
+        color: #191919;
       }
       #idfind{
         text-decoration: none;
         font-size: 15px;
         margin-left: 60px;
-        color: #19191199;
+        color: #191919;
       }
       #pwfind{
         text-decoration: none;
         font-size: 15px;
         margin-right: 0px;
-        color: #19191199;
+        color: #191919;
       }
-      /* img */
+      /* 다음 안내 id img */
       .info-box {
         margin: 20px 0;
         text-align: center;
@@ -181,6 +196,9 @@
         color: #828282;
         font-size: 15px;
       }
+      #crop{
+        font-size: 15px;
+      }
     </style>
   </head>
   <body>
@@ -195,18 +213,19 @@
           type="id"
           id="id"
           placeholder="카카오 메일 아이디, 이메일, 전화번호"
-        />
+        /><div class="hint"><span id="tip">TIP</span>카카오 메일이 있다면 메일 아이디만 입력해 보세요.</div>
         <label for="pw"></label>
         <input type="password" id="pw" placeholder="비밀번호" />
         <div class="checkbox-container">
             <input type="checkbox" id="stay-logged-in" />
-            <label for="stay-logged-in">로그인 상태 유지</label>
+            <label for="stay-logged-in">간편로그인 정보 저장</label>
             <span class="icon_i"></span>
           </div>
         <div class="confirm">
         <button id="loginbutton">로그인</button>
         <div id="or">또는</div>
-        <button id="qrlogin">QR코드 로그인</button>
+        
+        <button id="qrlogin" linked="https://accounts.kakao.com/qr_login/?append_stay_signed_in=false&continue=https%3A%2F%2Fwww.daum.net&lang=ko&showHeader=false&stay_signed_in=false#main">QR코드 로그인</button>
         </div>
         </form>
         <div class="info_user">
@@ -245,7 +264,7 @@
           <a href="https://cs.kakao.com">고객센터</a>
         </div>
 
-        <span>© Kakao Corp.</span>
+        <span id="crop">© Kakao Corp.</span>
       </div>
     </div>
   </body>

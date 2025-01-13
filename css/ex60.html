@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>연습문제-영화웹페이지</title>
+    <!-- https://www.megabox.co.kr/movie -->
+    <style>
+      /* 가운데 정렬 class */
+      .center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      /* header 글귀들 */
+      /* #header */
+      #header {
+        position: relative;
+        z-index: 100;
+        width: 100%;
+        height: 120px;
+        border-bottom: 1px solid #351f67;
+      }
+      #header_text1 {
+        list-style: none;
+        display: flex;
+        justify-content: space-between; /* 좌우 끝에 붙이고, 가운데는 간격 유지 */
+        align-items: center;
+        padding: 0;
+        margin: 0;
+        width: 100%; /* 화면 전체 너비 */
+      }
+
+      #header_text1 li {
+        margin: 0;
+      }
+
+      #header_text1 .gap {
+        flex: 1; /* 고객센터와 로그인 사이에 여백을 주는 역할 */
+      }
+
+      #header_text1 li a {
+        margin: 5px;
+        text-decoration: none; /* 링크 밑줄 제거 */
+        color: #191919; /* 텍스트 색상 설정 */
+      }
+      /* header 드롭다운 */
+      .nav-menu >.gap  {
+        flex: 0.5; /* 고객센터와 로그인 사이에 여백을 주는 역할 */
+      }
+
+      .nav {
+        background-color: solid;
+        padding: 10px;
+      }
+      .nav-menu {
+        list-style: none;
+        margin: 0 auto;
+        padding: 0;
+        display: flex;
+        margin-left: 300px;
+      }
+
+      .nav-item {
+        position: relative;
+      }
+
+      .nav-item > a {
+        display: block;
+        padding: 10px 20px;
+        text-decoration: none;
+        color: black;
+        font-weight: 600;
+        margin-left: 0; /* 여백 제거 */
+      }
+
+      .nav-item > a:hover {
+        background-color: #555;
+      }
+/* 드롭다운 메뉴 */
+.dropdown {
+  position: fixed; /* 화면의 왼쪽 끝에 고정 */
+  top: 130px; /* 부모 요소의 높이만큼 아래에 위치 (필요에 따라 조정) */
+  left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #4db6ac;
+  display: none;
+  text-align: left; /* 텍스트 좌측 정렬 */
+  flex-direction: row; /* 목록을 수평으로 정렬 */
+  z-index: 1000;
+  width: 100vw; /* 화면 전체 너비 */
+  height: auto; /* 높이 자동 조정 */
+}
+
+/* 부모 요소 위에 마우스를 올릴 때 드롭다운 메뉴 표시 */
+.nav-item:hover .dropdown {
+  display: inline-flex; /* 드롭다운 메뉴를 수평으로 표시 */
+}
+
+/* 드롭다운 메뉴 항목 스타일 */
+.dropdown li {
+  margin: 0;
+  padding: 10px 15px;
+}
+
+.dropdown a {
+  display: block;
+  padding: 10px 15px;
+  color: white;
+  text-decoration: none;
+}
+      /* 이미지 로고 */
+      #header img {
+        background: url(https://www.megabox.co.kr/movie);
+      }
+      /* nav */
+      .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: white;
+        border-radius: 5px;
+      }
+      .tabs {
+        display: flex;
+        border-bottom: 2px solid #ccc;
+      }
+      .tab {
+        padding: 10px 20px;
+        cursor: pointer;
+        text-align: center;
+        flex-grow: 1;
+        border-bottom: 2px solid transparent;
+      }
+      .tab:hover {
+        border-bottom: 2px solid #5a3fc0;
+        color: #5a3fc0;
+      }
+      .tab.active {
+        border-bottom: 2px solid #5a3fc0;
+        color: #5a3fc0;
+      }
+      .tab-content {
+        display: none;
+        padding: 20px;
+        border: 1px solid #ccc;
+      }
+      .tab-content.active {
+        display: block;
+      }
+      /* 영화 카드 */
+
+      #movie_main {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* 각 카드가 위쪽에 정렬 */
+        flex-wrap: wrap; /* 카드가 화면 너비를 넘어가면 다음 줄로 이동 */
+        width: 1000px;
+        margin: 10px;
+        padding: 30px 0 0 0;
+      }
+      .movie-card {
+        box-sizing: border-box;
+        flex-basis: 23%; /* 한 줄에 4개씩 배치되도록 설정 */
+        max-width: 23%;
+        padding: 10px;
+        margin: 10px;
+        text-align: start;
+      }
+
+      #num {
+        position: absolute;
+        font-style: italic;
+        font-size: 30px;
+        font-weight: 500;
+        color: white;
+        margin-top: 10px;
+        margin-left: 5px;
+      }
+      .poster {
+        width: 100%;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+
+      .details {
+        margin: 0;
+        padding: 10px;
+      }
+
+      .title {
+        font-size: 15px;
+        margin: 10px 0;
+      }
+
+      .info {
+        color: #555;
+        font-size: 10px;
+      }
+
+      .reserve-btn {
+        background-color: #6200ea;
+        color: #fff;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .reserve-btn:hover {
+        background-color: #3700b3;
+      }
+
+      .like-btn{
+        background-color: white;
+        border: 0.5px solid #ccc;
+        padding: 5px 10px;
+        border-radius: 5px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <div id="header">
+        <ul id="header_text1">
+          <li><a href="#">VIPLONGE</a></li>
+          <li><a href="#">멤버십</a></li>
+          <li><a href="#">고객센터</a></li>
+          <li class="gap"></li>
+          <!-- 간격을 위한 빈 항목 -->
+          <li><a href="#">로그인</a></li>
+
+          <li><a href="#">회원가입</a></li>
+          <li><a href="#">빠른예매</a></li>
+        </ul>
+        <!-- header 이미지 영역 -->
+        <span class="center"> <img src="mega_logo.png" /></span>
+        <!-- header 아래 dropdown 영역 -->
+        <div id="nav">
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="#">영화</a>
+              <ul class="dropdown">
+                <li><a href="#">전체영화</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#">예매</a>
+              <ul class="dropdown">
+                <li><a href="#">빠른예매</a></li>
+                <li><a href="#">상영시간표</a></li>
+                <li><a href="#">더 부티크 프라이빗 예매 </a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#">극장</a>
+              <ul class="dropdown">
+                <li><a href="#">전체극장</a></li>
+                <li><a href="#">특별관</a></li>
+              </ul>
+            </li>
+            <li class="gap"></li>
+            <li class="nav-item">
+              <a href="#">이벤트</a>
+              <ul class="dropdown">
+                <li><a href="#">진행중인 이벤트</a></li>
+                <li><a href="#">지난 이벤트</a></li>
+                <li><a href="#">당첨자 발표</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#">스토어</a>
+            </li>
+            <li class="nav-item">
+              <a href="#">혜택</a>
+              <ul class="dropdown">
+                <li><a href="#">메가박스 멤버십</a></li>
+                <li><a href="#">제휴/할인</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container">
+        <h1>전체 영화</h1>
+        <div class="tabs">
+          <div class="tab">박스오피스</div>
+          <div class="tab">상영예정작</div>
+          <div class="tab">단독</div>
+          <div class="tab">필름소사이어티</div>
+          <div class="tab">클래식소사이어티</div>
+        </div>
+        <div class="tab-content">박스오피스 내용</div>
+        <div class="tab-content">상영예정작 내용</div>
+        <div class="tab-content">단독 내용</div>
+        <div class="tab-content">필름소사이어티 내용</div>
+        <div class="tab-content">클래식소사이어티 내용</div>
+          <!-- 영화목록 -->
+          <div id="movie_main" class="center">
+            <div class="movie-card">
+              <p id="num">1</p>
+              <img src="movieimg/1.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">말할 수 없는 비밀</h3>
+                <p class="info">예매율 34.8% | 개봉일 2025.01.28</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+            <div class="movie-card">
+              <p id="num">2</p>
+              <img src="movieimg/2.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">검은 수녀들</h3>
+                <p class="info">예매율 11.8% | 개봉일 2025.01.24</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+
+            <div class="movie-card">
+              <p id="num">3</p>
+              <img src="movieimg/3.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">하얼빈</h3>
+                <p class="info">예매율 9.1% | 개봉일 2024.12.24</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+
+            <div class="movie-card">
+              <p id="num">4</p>
+              <img src="movieimg/4.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">동화지만 청불입니다</h3>
+                <p class="info">예매율 7.6% | 개봉일 2025.01.08</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+
+            <div class="movie-card">
+              <p id="num">5</p>
+              <img src="movieimg/5.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">코넬의 상자</h3>
+                <p class="info">예매율 7.6% | 개봉일 2025.01.08</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+            <div class="movie-card">
+              <p id="num">6</p>
+              <img src="movieimg/6.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">러브레터</h3>
+                <p class="info">예매율 7.6% | 개봉일 2025.01.08</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+            <div class="movie-card">
+              <p id="num">7</p>
+              <img src="movieimg/7.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">렛 미 인</h3>
+                <p class="info">예매율 7.6% | 개봉일 2025.01.08</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+            <div class="movie-card">
+              <p id="num">8</p>
+              <img src="movieimg/8.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">보고타: 마지막 기회의 땅</h3>
+                <p class="info">예매율 7.6% | 개봉일 2025.01.08</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+            <div class="movie-card">
+              <p id="num">9</p>
+              <img src="movieimg/9.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">페라리</h3>
+                <p class="info">예매율 7.6% | 개봉일 2025.01.08</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+            <div class="movie-card">
+              <p id="num">10</p>
+              <img src="movieimg/10.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">데드데드 데몬즈 디디디디 디트랙션</h3>
+                <p class="info">예매율 7.6% | 개봉일 2025.01.08</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+            <div class="movie-card">
+              <p id="num">11</p>
+              <img src="movieimg/11.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">히트맨 2</h3>
+                <p class="info">예매율 7.6% | 개봉일 2025.01.08</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+              </div>
+            </div>
+            <div class="movie-card">
+              <p id="num">12</p>
+              <img src="movieimg/12.jpg" alt="영화 포스터" class="poster" />
+              <div class="details">
+                <h3 class="title">위키드</h3>
+                <p class="info">예매율 7.6% | 개봉일 2025.01.08</p>
+                <button class="like-btn">♡<span>100</span></button>
+                <button class="reserve-btn">예매</button>
+                <button class="reserve-btn"><img src="movieimg/db_btn.png" width="37px" height="13px"></button>
+
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
