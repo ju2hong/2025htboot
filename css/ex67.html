@@ -10,11 +10,23 @@
     <!-- 6.flexbox : center -->
     <!-- 7.css grid : center -->
     <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
       .box1 {
         border: 1px solid red;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
       .box2 {
         border: 1px solid blue;
+        text-align: center;
+        /* 자신과 부모의 높이를 동일하게 함 */
+        /* line-height: 100px; */
       }
     </style>
   </head>
