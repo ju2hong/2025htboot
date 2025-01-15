@@ -144,25 +144,18 @@
       position: relative;
     }
 
-    .tab:hover {
-      border: 2px solid #5a3fc0;
-      border-bottom-color: #ccc;
+    .tab a {
+      text-decoration: none;
+      color: black;
     }
-
-    .tab.active {
-      border: 2px solid #5a3fc0;
-      border-bottom: 1px solid #ccc;
-      color: #5a3fc0;
+    #t1 {
+      border-left: 1px solid purple;
+      border-top: 1px solid purple;
+      border-right: 1px solid purple;
     }
-
-    .tab-content {
-      display: none;
-      padding: 20px;
-      border: 1px solid #ccc;
-    }
-
-    .tab-content.active {
-      display: block;
+    #t2 {
+      border-bottom: 1px solid purple;
+      padding: 5px;
     }
 
     /* 영화 카드 */
@@ -248,7 +241,7 @@
     }
 
     .reserve-btn:hover {
-      background-color: #3700b3;
+      background-color: #6200ea;
     }
 
     .like-btn {
@@ -449,11 +442,11 @@
       <div class="container">
         <h1>전체 영화</h1>
         <ul class="tabs">
-          <li class="tab"><a href="#"></a>박스 오피스</li>
-          <li class="tab"><a href="#"></a>상영예정작</li>
-          <li class="tab"><a href="#"></a>단독</li>
-          <li class="tab"><a href="#"></a>필름소사이어티</li>
-          <li class="tab"><a href="#"></a>클래식소사이어티</li>
+          <li class="tab" id="t1"><a href="#">박스 오피스</a></li>
+          <li class="tab" id="t2"><a href="#">상영예정작</a></li>
+          <li class="tab" id="t2"><a href="#">단독</a></li>
+          <li class="tab" id="t2"><a href="#">필름소사이어티</a></li>
+          <li class="tab" id="t2"><a href="#">클래식소사이어티</a></li>
         </ul>
         <!-- 영화목록 -->
         <div id="movie_main" class="center">
