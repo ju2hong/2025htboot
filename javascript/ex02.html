@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS 출력방법 - 1</title>
+    <script>
+      // CTRL+ / 한줄 주석문
+      /* 
+        여러줄 
+        주석문
+      */
+      //단 따옴표 '' 와 쌍따옴표를 구분하지 않는다
+      // 둘 다 문자열로 인식한다
+      // alert("Hello JS 1");
+      // prettier-ignore
+      // alert('Hello JS 2');
+      // alert("Hello JS 3 - '대한민국'");
+      // alert('Hello JS 4 - "대한민국"');
+
+      // 문자열 연결 연산자 +
+      // 1. 산술 연산자 10 + 20 = 30
+      // 2. 문자열 연결 연산자 10 + '20' = '1020' (number+string=string)
+      // alert("대한"+"민국");
+      // alert(10 + 20);
+      // alert(10 + "20");
+
+      // C/C++, JAVA, swift, kotlin : 타입선언
+      // int num = 10;
+      // var let const 변수 선언시
+      let num = 10; //타입 추정으로 number타입(형)으로 선언
+      alert("num 값은 " + num);
+    </script>
+  </head>
+  <body></body>
+</html>
