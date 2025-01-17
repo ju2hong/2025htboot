@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>연습문제</title>
+    <script>
+      // for문 사용
+      // 1. 반복변수 i를 1부터 10까지 출력
+      document.write("  반복변수 i를 1부터 10까지 출력 : ");
+      for (i = 1; i < 11; i++) {
+        document.write(i + "&nbsp;");
+      }
+      // 2. 1부터 10까지 홀수만 출력
+      document.write(" <br> 1부터 10까지 홀수만 출력 : ");
+      for (i = 1; i < 11; i++) {
+        if (i % 2 != 0) {
+          document.write(i + "&nbsp;");
+        }
+      }
+      // 3. 1부터 10사이의 3의 배수만 출력
+      document.write(" <br>1부터 10사이의 3의 배수만 출력 : ");
+      for (i = 1; i < 11; i++) {
+        if (i % 3 == 0) {
+          document.write(i + "&nbsp;");
+        }
+      }
+      // 4. 1부터 100까지의 합을 출력
+      let sum = 0; // 반복문 안에 쓰면 안됨
+      document.write(" <br>1부터 100까지의 합을 출력 : ");
+      for (let i = 1; i <= 100; i++) {
+        sum += i; //sum = sum+i
+      }
+      document.write(sum); // document.write(`sum:${sum}<br>`);
+      // 5. 1부터 6사이의 랜덤수 10개를 출력
+      let N = 6;
+      document.write(" <br>1부터 6사이의 랜덤수 10개를 출력 : ");
+      for (i = 0; i < 10; i++) {
+        let i = Math.floor(Math.random() * 6) + 1;
+        document.write(i + "&nbsp;");
+      }
+      // 6. 1부터 100사이의 랜덤값 10개를 발생시키고,
+      //    그중 가장 큰수 (max)를 출력하시오
+      document.write(" <br>1부터 100사이의 랜덤값 10개 :  ");
+      max = 0;
+      for (let i = 1; i <= 10; i++) {
+        let random = Math.floor(Math.random() * 100) + 1;
+        document.write(random + "&nbsp;");
+        if (random > max) {
+          max = random;
+        }
+      }
+      document.write(" <br>그중 가장 큰수 (max) :  ");
+      document.write(max);
+
+      // 최대값 찾기
+      // let max2 = Number.MIN_SAFE_INTEGER;
+      // for (let i = 0; i < 10; i++) {
+      //   let num2 = Math.floor(Math.random() * 10 + 1);
+      //   if (max2 < num3) {
+      //     max2 = num3;
+      //   }
+      // }
+      // 최소값 찾기
+      // let min2 = Number.MAX_SAFE_INTEGER;
+      // for (let i = 0; i < 10; i++) {
+      //   let num2 = Math.floor(Math.random() * 10 + 1);
+      //   if (min2 > num2) {
+      //     min2 = num2;
+      //   }
+      // }
+
+      // 중급
+      //7. 1부터 100까지의 소수의 갯수를 출력하시오.
+      //   소수 : 약수가 1과 자신인 수
+      //   약수 : 나누어 떨어지는 수
+      document.write(" <br>1부터 100까지의 소수의 갯수를 출력하시오. :  ");
+      let primeCount = 0;
+      for (let i = 2; i <= 100; i++) {
+        let isPrime = true;
+        for (let j = 2; j <= Math.sqrt(i); j++) {
+          if (i % j === 0) {
+            isPrime = false;
+            break;
+          }
+        }
+        if (isPrime) {
+          primeCount++;
+        }
+      }
+      document.write(primeCount);
+
+      //8. 이번주 행운의 로또 숫자 6개를 출력하시오.
+      //   1부터 45까지의 랜덤한 수 6개를 뽑되
+      //   반복허용하지 않음. 재추첨 로직을 넣으시오.
+      document.write(" <br>이번주 행운의 로또 숫자 6개를 출력하시오. :  ");
+      let lotto = [0, 0, 0, 0, 0, 0];
+      for (let i = 0; i < 6; i++) {
+        let temp = parseInt(Math.random() * 45 + 1);
+        console.log("추첨값:" + temp);
+        for (let j = 0; j < lotto.length; j++) {
+          if (lotto[j] == temp) {
+            console.log("재추첨:" + temp);
+            i--;
+            continue;
+          }
+        }
+        lotto[i] = temp;
+      }
+      for (let num of lotto) {
+        console.log(num);
+      }
+      let lucky_num = [];
+      let get_num = 0;
+      let time = 0;
+      while (time != 6) {
+        get_num = Math.floor(Math.random() * 45) + 1;
+        if (!lucky_num.includes(get_num)) {
+          lucky_num.push(get_num);
+          time++;
+        }
+      }
+      document.write(lucky_num + "&nbsp;");
+      //9. 주사위 2개 10번 던져서, 두 주사위 수를 합산한 다음
+      //   최소수와 최대수를 출력하시오.
+      let dicemin = 12; // 두 주사위의 최대 합은 12
+      let dicemax = 2; // 두 주사위의 최소 합은 2
+      document.write(" <br>두 주사위 합산 값 10개: ");
+      for (let i = 1; i <= 10; i++) {
+        let dice1 = Math.floor(Math.random() * 6) + 1;
+        let dice2 = Math.floor(Math.random() * 6) + 1;
+        let dicesum = dice1 + dice2;
+        document.write(dicesum + "&nbsp;");
+        if (dicesum < dicemin) {
+          dicemin = dicesum;
+        }
+        if (dicesum > dicemax) {
+          dicemax = dicesum;
+        }
+      }
+      document.write(" → 최소값: " + dicemin);
+      document.write(" 최대값: " + dicemax);
+    </script>
+  </head>
+  <body></body>
+</html>
