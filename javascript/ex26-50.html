@@ -8,6 +8,7 @@
       // for (let i = 0; i < text.length - 1; i++) {
       //   console.log(text[i], text[i + 1]);
       // }
+
       // 27
       // let t = prompt("알파벳 하나만 입력하세요");
       // if (t === t.toUpperCase()) {
@@ -15,21 +16,64 @@
       // } else {
       //   console.log("NO");
       // }
+
       // 28
       // let cont = prompt("문자를 입력하세요");
       // let shh = prompt("숨은 문자를 입력해주세요");
       // console.log(cont.indexOf(shh));
+
       // 30
       // const content = prompt("단어를 적으세요").split(" ");
       // document.write(content.length);
-      //31
 
-      let back = prompt("입력하세요").split("").reverse();
-      let result = " ";
-      for (i = 0; i < back.length; i++) {
-        result += back[i];
-      }
-      console.log(result);
+      // 31
+      // let back = prompt("입력하세요").split("").reverse();
+      // let result = " ";
+      // for (i = 0; i < back.length; i++) {
+      //   result += back[i];
+      // }
+      // console.log(result);
+
+      // 32
+      // let input = prompt("값을 입력하세요");
+      // let heights = input.split(" ").map(Number);
+      // if (heights.join(" ") === [...heights].sort((a, b) => a - b).join(" ")) {
+      //   document.write("YES");
+      // } else {
+      //   document.write("NO");
+      // }
+
+      // 33
+      // function one(n) {
+      //   function two(value) {
+      //     const sq = Math.pow(value, n);
+      //     return sq;
+      //   }
+      //   return two;
+      // }
+      // const a = one(2);
+      // const b = one(3);
+      // const c = one(4);
+      // console.log(a(10));
+      // console.log(b(10));
+      // console.log(c(10));
+
+      // 34
+      // let result = 0;
+      // let gugu = prompt("검색할 구구단");
+      // for (let i = 1; i < 10; i++) {
+      //   result = gugu * i;
+      //   document.write(`${result}` + "&nbsp");
+      // }
+
+      // 35
+      let names = prompt("뽑힌 학생의 이름을 입력하세요.").split(" ");
+      let max = names.map(() => {
+        if (max > names.length) {
+          max = names.length;
+        }
+      });
+      document.write(max);
     </script>
   </head>
   <body></body>
