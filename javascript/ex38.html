@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>연습문제 : 객체선택 연습</title>
+    <script>
+      //1번 a태그의 html내용을 "앵커태그 선택됨"으로 바꾸시오.
+      //2번 p태그의 html내용을 각각 "문단태그-1" "문단태그-2"로 바꾸시오.
+      //3번 h3태그의 html내용을 "헤더태그 h3선택됨."으로 바꾸시오.
+      window.onload = () => {
+        let a = document.getElementById("anchor");
+        a.innerHTML = "앵커태그 선택 됨";
+
+        let twoP = document.getElementsByClassName("para");
+        twoP[0].innerHTML = "문단태그-1";
+        twoP[1].innerHTML = "문단태그-2";
+
+        let h3ele = document.getElementsByTagName("h3");
+        for (let ch3 of h3ele) {
+          ch3.innerHTML = "헤더태그 h3 선택됨.";
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <div>
+      <a id="anchor" href="#">앵커태그</a>
+      <p class="para">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro ducimus
+        obcaecati saepe aspernatur sint tempora sequi facere neque totam,
+        exercitationem ratione itaque. Cum, sapiente ipsa aliquid dicta
+        necessitatibus voluptatibus fugit?
+      </p>
+      <p class="para">
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Porro ducimus
+        obcaecati saepe aspernatur sint tempora sequi facere neque totam,
+        exercitationem ratione itaque. Cum, sapiente ipsa aliquid dicta
+        necessitatibus voluptatibus fugit?
+      </p>
+      <h3>header h3</h3>
+    </div>
+  </body>
+</html>
