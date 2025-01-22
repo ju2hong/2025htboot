@@ -86,14 +86,212 @@
       // );
 
       // 36
-      const array = prompt("점수를 입력해 주세요").split(" ");
-      let result = {};
-      let num = "";
-      for (let index in array) {
-        let val = array[index];
-        result[val] =
-          result[val] === undefined ? 1 : (result[val] = result[val] + 1);
-      }
+      // const scores = prompt("점수입력")
+      //   .split(" ")
+      //   .map(function (n) {
+      //     return parseInt(n, 10);
+      //   });
+
+      // //점수 오름차순 정렬
+      // scores.sort((a, b) => {
+      //   return a - b;
+      // });
+
+      // // 상위 3개 중복되지 않는 점수 추출
+      // let count = 0;
+      // let arr = [];
+      // while (arr.length < 3) {
+      //   let n = scores.pop();
+      //   if (!arr.includes(n)) {
+      //     arr.push(n);
+      //   }
+      //   count += 1;
+      // }
+
+      // console.log(count);
+
+      // 37
+      // let text = prompt("입력해주세요");
+      // for (i = 0; i < text.length; i++) {
+      //   let result = text.replace(/q/g, "e");
+      //   console.log(result);
+      //   break;
+      // }
+
+      // 38
+      // let weight = Number(prompt("제한 무게?"));
+      // let n = Number(prompt("탑승할 수?"));
+      // let totalWeight = 0;
+      // let result = 0;
+
+      // for (let i = 1; i <= n; i++) {
+      //   let random = Math.floor(Math.random() * 150) + 1; // 1부터 150까지 랜덤 몸무게 생성
+      //   if (totalWeight + random <= weight) {
+      //     totalWeight += random; // 누적된 무게에 랜덤 무게를 더함
+      //     result++;
+      //   } else {
+      //     break; // 몸무게 초과 시 반복문 종료
+      //   }
+      //   console.log(`사람 ${i}의 몸무게: ${random}kg`);
+      // }
+
+      // console.log(`총 ${result}명이 탑승할 수 있습니다.`);
+
+      // 39
+      // let s = 0;
+      // for (i = 1; i < 101; i++) {
+      //   s += i;
+      // }
+      // console.log(s);
+
+      // 40
+      // var names = ["장미", "수선화", "코스모스"];
+
+      // names.forEach((index) => {
+      //   console.log(index);
+      // });
+      // //가장 긴 단어 출력
+      // let long = names.reduce((str, cur) => {
+      //   return cur.length > str.length ? cur : str;
+      // }, "");
+      // console.log(`가장 긴 단어는 ${long} 입니다.`);
+
+      // 41
+      // let num = Number(prompt("숫자 입력해주세요"));
+
+      // function isPrime(n) {
+      //   if (n < 2) return false; // 2보다 작은 수는 소수가 아님
+      //   for (let i = 2; i <= Math.sqrt(n); i++) {
+      //     if (n % i === 0) return false; // 나누어 떨어지면 소수가 아님
+      //   }
+      //   return true; // 소수일 경우
+      // }
+
+      // document.write(isPrime(num) ? "YES" : "NO");
+
+      // 42
+      // const month = prompt("월을 입력");
+      // const date = prompt("날을 입력");
+      // function solution(a, b) {
+      //   const day = ["SUN", "MON", "TUE", "WEN", "THU", "FRI", "SAT"];
+      //   const x = new Date("2020-" + a + "-" + b);
+      //   return day[x.getDay()];
+      // }
+      // console.log(solution(month, date));
+
+      // 43
+      // let a = prompt("10진수를 입력해주세요.");
+      // let b = [];
+      // let result = "";
+
+      // while (a) {
+      //   b.push(a % 2);
+      //   a = parseInt(a / 2, 10);
+      // }
+      // b.reverse();
+
+      // b.forEach((n) => {
+      //   result += n;
+      // });
+
+      // console.log(result);
+
+      // 44
+      // let n = prompt("숫자를 입력하세요.");
+      // let sum = 0;
+
+      // while (n !== 0) {
+      //   sum += n % 10;
+      //   n = Math.floor(n / 10);
+      // }
+
+      // console.log(sum);
+
+      // 45
+      // const d = new Date(); //Date 객체를 생성
+
+      // let year = d.getTime();
+      // year = Math.floor(year / (3600 * 24 * 365 * 1000)) + 1970;
+      // // 3600 * 24 * 365 * 1000 :1년을 밀리 초로 변환한 것이고
+      // // year / (3600 * 24 * 365 * 1000) :밀리초를 연단위로 나눈것이다
+      // console.log(year);
+
+      // 46
+      // let sum = 0;
+      // for (let i = 1; i <= 20; i++) {
+      //   let str = String(i); // 숫자를 문자열로 변환
+      //   sum += str.split("").reduce((acc, num) => acc + Number(num), 0); // 각 자릿수 합산
+      // }
+      // console.log(sum);
+
+      // 47
+      // const people = {
+      //   이호준: "01050442903",
+      //   이호상: "01051442904",
+      //   이준호: "01050342904",
+      //   이호준: "01050442903",
+      //   이준: "01050412904",
+      //   이호: "01050443904",
+      //   이호준: "01050442903",
+      // };
+      // let result = new Set();
+      // for (let key in people) {
+      //   result.add(people[key]);
+      // }
+
+      // console.log(result.size);
+
+      // 48
+      // let text = ["AAABBBcccddd"];
+      // let toggledText = text.map((str) => {
+      //   return str
+      //     .split("")
+      //     .map((char) => {
+      //       return char === char.toUpperCase()
+      //         ? char.toLowerCase()
+      //         : char.toUpperCase();
+      //     })
+      //     .join("");
+      // });
+
+      // console.log(toggledText);
+
+      // 49
+      // let numbers = prompt("10개의 숫자를 입력하세요")
+      //   .split(" ")
+      //   .map((n) => {
+      //     return parseInt(n, 10);
+      //   });
+
+      // numbers.sort((a, b) => {
+      //   return b - a;
+      // });
+
+      // console.log(numbers[0]);
+
+      // 50
+      // function bubble(arr) {
+      //   let result = arr.slice(); // 원본 배열 복사
+
+      //   for (let i = 0; i < result.length - 1; i++) {
+      //     for (let j = 0; j < result.length - i; j++) {
+      //       if (result[j] > result[j + 1]) {
+      //         let temp = result[j];
+      //         result[j] = result[j + 1];
+      //         result[j + 1] = temp;
+      //       }
+      //     }
+      //   }
+      //   return result;
+      // }
+
+      // const items = prompt("입력해주세요.")
+      //   .split(" ")
+      //   .map((n) => {
+      //     return parseInt(n, 10);
+      //   });
+
+      // console.log(bubble(items));
     </script>
   </head>
   <body></body>
