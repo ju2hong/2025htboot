@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>1의 갯수</title>
+    <script>
+      let sum = 0; //최종값 초기화
+
+      for (let i = 0; i <= 1000; i++) {
+        //1000까지 출력
+        if (String(i).includes("1")) {
+          sum += i
+            .toString() // 숫자를 문자열로 변환
+            .split("") // 문자열을 배열로 나눔
+            .map(Number) // 각 요소를 숫자로 변환
+            .reduce((acc, num) => acc + num, 0); // 자릿수를 합산
+        }
+      }
+
+      console.log(sum);
+
+      let count = 0; // '1'의 개수를 저장할 변수
+
+      // 0부터 1000까지의 숫자 순회
+      for (let i = 0; i <= 1000; i++) {
+        // 숫자를 문자열로 변환하고, '1'의 개수를 셈
+        count += String(i)
+          .split("")
+          .filter((digit) => digit === "1").length;
+      }
+
+      console.log(count); // 총 '1'의 개수를 출력
+    </script>
+  </head>
+  <body></body>
+</html>

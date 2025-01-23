@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>53</title>
+    <script>
+      function mathBrackets(e) {
+        let count = 0;
+
+        // 괄호의 개수가 같지 않으면 flase
+        for (let i = 0; i < e.length; i++) {
+          if (e[i] === "(") {
+            count++;
+          }
+          if (e[i] === ")") {
+            count--;
+          }
+        }
+        if (count !== 0) {
+          return false;
+        }
+        // 스택을 사용
+        let array = [];
+        for (let i in e) {
+          if (e[i] === "(") {
+            array.push("("); // 여는 괄호를 스택에 추가
+          }
+          if (e[i] === ")") {
+            if (array.length === 0) {
+              return false; // 스택이 비어있으면 닫는 괄호가 잘못된 것
+            }
+            array.pop(); //올바른 경우 스택에서 여는 괄호 제거
+          }
+        }
+        return true; //스택이 비어 있으면 괄호 쌍이 맞음
+      }
+      // 프롬프터로 값을 입력받음
+      let arr = prompt("확인할 문자열");
+      // 값이 맞는지 판별함
+      if (mathBrackets(arr) == true) {
+        console.log("YES");
+      } else {
+        console.log("NO");
+      }
+
+      // 스택을 사용하지 않는 간단 버전
+      // function mathBrackets(e) {
+      //   let count = 0;
+
+      //   for (let i = 0; i < e.length; i++) {
+      //     if (e[i] === "(") {
+      //       count++;
+      //     } else if (e[i] === ")") {
+      //       count--;
+      //     }
+      //     // count가 음수가 되면 닫는 괄호가 더 많은 상황 (즉, 잘못된 경우)
+      //     if (count < 0) {
+      //       return false;
+      //     }
+      //   }
+
+      //   // 모든 괄호를 확인한 후 count가 0이면 올바른 괄호
+      //   return count === 0;
+      // }
+
+      // let arr = prompt("확인할 문자열");
+      // console.log(mathBrackets(arr) ? "YES" : "NO");
+    </script>
+  </head>
+  <body></body>
+</html>

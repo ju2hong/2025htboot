@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>연속되는 수 판별</title>
+    <script>
+      // 핵심은 최댓값 - 최소값 + 1 == 배열의 길이, 중복 여부가 중요함
+
+      function checkNumber(e) {
+        e.sort((a, b) => a - b);
+
+        for (let i = 0; i < e.length - 1; i++) {
+          if (e[i] + 1 !== e[i + 1]) {
+            return "NO";
+          }
+        }
+        return "YES";
+      }
+      const arrNum = prompt("숫자를 입력해주세요.(공백으로 구분)")
+        .split(" ")
+        .map((num) => parseInt(num, 10));
+      console.log(checkNumber(arrNum));
+
+      // 간단한 구현
+      // function isConsecutive(arr) {
+      //   const min = Math.min(...arr); // 최솟값
+      //   const max = Math.max(...arr); // 최댓값
+
+      //   // 조건: 연속된 숫자라면 (최댓값 - 최솟값 + 1 === 배열 길이)이고, 중복이 없어야 함
+      //   return max - min + 1 === arr.length && new Set(arr).size === arr.length
+      //     ? "YES"
+      //     : "NO";
+      // }
+
+      // const input = prompt("숫자를 입력하세요 (공백으로 구분)")
+      //   .split(" ")
+      //   .map(Number);
+      // console.log(isConsecutive(input));
+    </script>
+  </head>
+  <body></body>
+</html>
