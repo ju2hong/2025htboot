@@ -18,6 +18,7 @@
 i : install의 약자
 -g : global의 약자, pc 전체경로에 설치
 
+
 6.npx create-react-app 프로젝트명
   npx create-react-app my-app
   npx : npm과 달리 해당하는 모듈이 없으면, 설치후 실행한다.
@@ -41,8 +42,8 @@ npm install -g yarn
 yarn create react-app my-app
 
 * CRA의 성능향상 버전인 vite를 사용하면, 리액트 19버전이 18버전으로 설정되어 호환성문제 해결됨.
-npm create vite@latest
-cd my-vite-app
+react> npm create vite@latest
+cd vite-project
 npm install
 npm run dev: 개발 서버 실행
 npm run build: 프로덕션 빌드 생성
