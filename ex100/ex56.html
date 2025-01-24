@@ -12,10 +12,11 @@
         England: 242900,
       };
 
-      const w = nationWidth["korea"];
+      const w = nationWidth["korea"]; //한국의 면적값을 w라는 변수에 저장
 
-      delete nationWidth["korea"];
+      delete nationWidth["korea"]; // 비교를 위해 한국 데이터를 객체에서 제거
 
+      // 객체를 배열로 반환한다. ex) values = [17098242, 9596961, 543965, 377915, 242900];
       const entry = Object.entries(nationWidth);
       const values = Object.values(nationWidth);
 
@@ -24,13 +25,18 @@
       let item = [];
 
       for (let i in entry) {
+        // entry 배열을 순회한다.
         if (gap > Math.abs(entry[i][1] - w)) {
+          // entry[i][1]는 나라의 면적이고 w는 한국의 면적이다.
+          // Math.abs(entry[i][1] - w) 는 해당 나라와 한국의 면적 차이를 계산한다.
           gap = Math.abs(entry[i][1] - w);
           item = entry[i];
+          // gap 보다 계산된 차이가 작으면 gap 값을 업데이트 하고 item에 나라 데이터를 저장한다.
         }
       }
 
       console.log(item[0], item[1] - w);
+      // 결과 출력 ( 면적 차이가 가장 작은 나라의 이름 , 해당 나라와 한국의 면적 차이 )
     </script>
   </head>
   <body></body>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>59</title>
+    <script>
+      //재귀함수 방법
+      // function len(t) {
+      //   if (t.length <= 50) {
+      //     return len("=" + t + "=");
+      //   } else {
+      //     return t;
+      //   }
+      // }
+      // let text = prompt("텍스트를 입력해 주세요.");
+      // console.log(len(text));
+
+      // 반복문 방법
+      function len1(t) {
+        while (t.length <= 50) {
+          t = "=" + t + "=";
+        }
+        return t;
+      }
+      let text2 = prompt("텍스트를 입력해 주세요.");
+      console.log(len1(text2));
+    </script>
+  </head>
+  <body></body>
+</html>
