@@ -15,6 +15,8 @@
 5.npx 버전확인
   npx -v  
 설치되어 있지 않으면, npm i npx -g 로 설치합니다.
+i : install의 약자
+-g : global의 약자, pc 전체경로에 설치
 
 6.npx create-react-app 프로젝트명
   npx create-react-app my-app
