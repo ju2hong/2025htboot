@@ -5,10 +5,11 @@
     <script>
       const a = [1, 2, 3, 4];
       const b = ["a", "b", "c", "d"];
-      const ab = [a[i] + "," + b[j]];
-      console.log(ab);
-
-      for (let i = 0; i < a.length; i++) {}
+      const obj = {};
+      for (i = 0; i < a.length; i++) {
+        obj[a[i]] = String(b[i]);
+      }
+      console.log(obj);
     </script>
   </head>
   <body></body>
