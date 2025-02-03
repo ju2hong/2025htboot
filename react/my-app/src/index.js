@@ -4,16 +4,18 @@ import reportWebVitals from "./reportWebVitals";
 // import Clock from "./chapter04/Clock";
 // import You from "./you/You";
 // import CommentList from "./chapter05/CommentList";
-import NotificationList from "./chapter06/NotificationList";
+// import NotificationList from "./chapter06/NotificationList";
+import App from "./App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
 
-setInterval(() => {
-  root.render(
-    <React.StrictMode>
-      <NotificationList />
-    </React.StrictMode>
-  );
-}, 1000);
+// setInterval(() => {
+//   root.render(
+//     <React.StrictMode>
+//       <App />
+//     </React.StrictMode>
+//   );
+// }, 1000);
 
 reportWebVitals();
