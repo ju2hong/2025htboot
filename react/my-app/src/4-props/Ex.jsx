@@ -25,30 +25,20 @@ export function Props1() {
 // - `UserCard`라는 자식 컴포넌트를 작성하세요.
 // - `name`, `age`, `job`을 `props`로 받아 사용자 정보를 표시합니다.
 // - 부모 컴포넌트에서 두 명의 사용자 정보를 전달해 렌더링합니다.
-function UserCard({ name, age, job }) {
+function UserCard(props) {
   return (
     <div>
-      <p>
-        이름:{name} ,나이:{age}, 직업:{job}
-      </p>
+      <h2>이름:{props.name}</h2>
+      <h2>나이:{props.age}</h2>
+      <h2>직업:{props.job}</h2>
     </div>
   );
 }
 export function Props2() {
-  const user1 = {
-    name: "이영희",
-    age: 28,
-    job: "개발자",
-  };
-  const user2 = {
-    name: "유재석",
-    age: 53,
-    job: "개그맨",
-  };
   return (
     <div>
-      <UserCard {...user1} />
-      <UserCard {...user2} />
+      <UserCard name="홍길동" age={30} job="개발자" />
+      <UserCard name="홍주이" age={23} job="학생" />
     </div>
   );
 }
@@ -104,14 +94,16 @@ export function Props4() {
 // - `InfoCard`라는 자식 컴포넌트를 작성하세요.
 // - `title`이라는 `props`와 `children`을 사용하여 제목과 본문 콘텐츠를 렌더링합니다.
 // - 부모 컴포넌트에서 두 개의 카드를 렌더링하세요.
-function InfoCard({ title, children }) {
+function InfoCard(props) {
   return (
     <div>
-      <p>{title}</p>
-      <p>{children}</p>
+      <h2>{props.title}</h2>
+      {props.children}
     </div>
   );
 }
+// 자식 컴퍼넌트(child component)
+// 자식 요소(child element) : props.children
 export function Props5() {
   return (
     <div>

@@ -1,3 +1,5 @@
+import React, { Component, useState } from "react";
+
 // Ex2.jsx
 // 문제 1: 조건부 렌더링과 단일 Props
 // 목표: 특정 조건에 따라 다른 인삿말을 출력하는 컴포넌트를 작성하세요.
@@ -22,28 +24,26 @@ export function Greeting({ isMorning, name }) {
 // - "한 살 더 먹기" 버튼을 클릭하면 나이가 증가합니다.
 // - 부모 컴포넌트에서 두 명의 사용자 상태를 관리합니다.
 function UseCard({ name, age }) {
+  const [currentAge, setCurrentAge] = useState(age); // 상태 관리
+  const addAge = () => {
+    setCurrentAge(currentAge + 1); // 상태 업데이트
+  };
+
   return (
     <div>
       <p>이름:{name}</p>
-      <br />
-      <p>나이:{age}</p>
-      <br />
-      <button onClick={props.onClickFunc}>한 살 더 먹기</button>
+      <p>나이:{currentAge}</p>
+      <button onClick={addAge}>한 살 더 먹기</button>
     </div>
   );
 }
 export function Props2() {
-  const user1 = { name: "홍주이", age: 23 };
-  const user2 = { name: "홍태랑", age: 16 };
-  function handleClick() {
-    Number(age)++;
-  }
-
+  let user1 = { name: "홍주이", age: 23 };
+  let user2 = { name: "홍태랑", age: 16 };
   return (
     <div>
       <UseCard {...user1} />
       <UseCard {...user2} />
-      <UseCard onClickFunc={handleClick} />
     </div>
   );
 }

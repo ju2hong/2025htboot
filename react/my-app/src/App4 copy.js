@@ -5,8 +5,9 @@ import * as E from "./4-props/Ex2";
 function App() {
   return (
     <div>
-      <E.Greeting isMorning={false} name="주이" />
-      <E.Greeting isMorning={true} name="메롱" />
+      {/* <E.Greeting isMorning={false} name="주이" />
+      <E.Greeting isMorning={true} name="메롱" /> */}
+      <E.Props2 />
     </div>
   );
 }
