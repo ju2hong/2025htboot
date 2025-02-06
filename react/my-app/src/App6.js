@@ -7,8 +7,8 @@ function App() {
       {/* <E.State1 /> */}
       {/* <E.ColorChange /> */}
       {/* <E.ChangecheckBox /> */}
-      {/* <E.LimitedCounter /> */}
-      <E.ItemList />
+      <E.LimitedCounter />
+      {/* <E.ItemList /> */}
     </div>
   );
 }
