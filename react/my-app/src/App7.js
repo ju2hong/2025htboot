@@ -1,10 +1,11 @@
 // import * as E from "./7-hook/Hook";
-import * as E from "./7-hook/Ex";
+// import * as E from "./7-hook/Ex";
+import * as E from "./7-hook/CustomHook";
 
 function App() {
   return (
     <div>
-      <E.Ex2 />
+      <E.Counter />
     </div>
   );
 }
