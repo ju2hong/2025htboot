@@ -6,9 +6,20 @@
       const a = [1, 2, 3, 4];
       const b = ["a", "b", "c", "d"];
 
-      for (let i = 0; i < a.length; i++) {
-        console.log(a[i], b[i]);
+      // const obj = {};
+      // for (i = 0; i < a.length; i++) {
+      //   obj[a[i]] = String(b[i]);
+      // }
+      // console.log(obj);
+
+      function add() {
+        for (j = 0; j < a.length; j++) {
+          var arrAB = a[j] + b[j];
+          let result = arrAB.concat();
+          console.log(result);
+        }
       }
+      add();
     </script>
   </head>
   <body></body>
