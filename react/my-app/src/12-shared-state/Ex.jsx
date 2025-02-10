@@ -75,11 +75,10 @@ function SelectArray({ items, selectedItems, onSelect }) {
             borderRadius: "5px",
             transition: "background-color 0.3s",
             backgroundColor: selectedItems.includes(item)
-              ? "lightblue" // 선택된 경우 파란색
+              ? "lightgrey" // 선택된 경우
               : hoveredItem === item
-              ? "lightblue" // hover 시 연한 파란색
-              : "white", // 기본 회색
-            color: selectedItems.includes(item) ? "white" : "black",
+              ? "lightgrey" // hover 시
+              : "white", // 기본
           }}
         >
           {item}
@@ -100,7 +99,7 @@ export function LiftingStateUp() {
 
   return (
     <div>
-      <h2>리스트 선택 및 연동</h2>
+      <h2>연습문제 2번</h2>
       <SelectArray
         items={items}
         selectedItems={selectedItems}
