@@ -5,7 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 // import You from "./you/You";
 // import CommentList from "./chapter05/CommentList";
 // import NotificationList from "./chapter06/NotificationList";
-import App from "./App9";
+import App from "./App12";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);

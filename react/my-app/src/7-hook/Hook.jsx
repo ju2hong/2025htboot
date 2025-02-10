@@ -142,8 +142,9 @@ export function Counter5() {
     (e) => {
       console.log("useCallback 메모이제이션");
       setNumber(parseInt(e.target.value));
-    },
-    [number]
+    }
+    // [number] //의존성 배열에 number를 포함하면,
+    // number값이 변경될 때 마다 handleNumberChange 함수가 새롭게 생성 됩니다.
   );
   const handleInputChange = useCallback((e) => {
     console.log("useCallback 메모제이션2");
