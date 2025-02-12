@@ -9,7 +9,7 @@ export default function App() {
         {/* <div className="kiosk-container">
           <Kiosk />
         </div> */}
-        <div className="takeout-container">
+        <div className="takeout-container flex justify-start items-center">
           <Tackout />
         </div>
       </div>
