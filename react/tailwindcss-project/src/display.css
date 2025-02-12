@@ -1,0 +1,14 @@
+.body {
+  width: 100vw;
+  height: 177.78vw; /* 9:16 비율 (9 / 16 * 100vw) */
+  max-height: 100vh; /* 화면보다 커지는 걸 방지 */
+  margin: 0 auto;
+  overflow: hidden;
+  display: ;
+}
+.kiosk-container {
+  width: 500px;
+  border: 1px solid black;
+  margin: 20px;
+  background-color: beige;
+}

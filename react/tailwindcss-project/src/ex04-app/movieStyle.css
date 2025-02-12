@@ -1,0 +1,305 @@
+.header {
+  border-bottom: 2px solid purple;
+  display: flex;
+  flex-direction: column;
+  height: 150px;
+  position: relative; /* 또는 absolute */
+}
+
+.top_links {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.left_link,
+.right_link {
+  display: flex;
+}
+
+.left_link a,
+.right_link a {
+  margin: 0 10px;
+  color: #191919;
+  text-decoration: none;
+}
+.navigation-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#link_area {
+  display: flex;
+  width: 100%;
+}
+
+#link_area a:nth-child(1),
+#link_area a:nth-child(2) {
+  margin-right: auto;
+}
+
+#link_area a:nth-child(4),
+#link_area a:nth-child(5) {
+  margin-left: auto;
+}
+
+#gnb {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+#link_area {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#link_area a {
+  margin: 0 10px;
+}
+
+#link_area a:nth-child(3) {
+  flex-grow: 1;
+  text-align: center;
+}
+
+#gnb li {
+  position: relative;
+  display: inline-block; /* 요소들을 수평으로 나열 */
+}
+
+#gnb .gnb-depth2 {
+  position: fixed; /* 화면의 왼쪽 끝에 고정 */
+  top: 140px; /* 부모 요소의 높이만큼 아래에 위치 (필요에 따라 조정) */
+  left: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background-color: #4db6ac;
+  display: none;
+  text-align: left; /* 텍스트 좌측 정렬 */
+  flex-direction: row; /* 목록을 수평으로 정렬 */
+  width: 100vw; /* 화면 전체 너비 */
+  height: auto; /* 높이 자동 조정 */
+}
+
+#gnb li:hover .gnb-depth2 {
+  display: block;
+}
+
+#gnb .gnb-depth2 ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
+#gnb .gnb-depth2 li {
+  display: flex; /* a 요소를 flex 컨테이너로 설정 */
+  padding: 8px 16px;
+}
+
+#gnb .gnb-depth2 a {
+  color: #000;
+  text-decoration: none;
+  display: flex; /* a 요소를 flex 컨테이너로 설정 */
+  justify-content: center; /* a 요소 내부 텍스트를 수평 중앙 정렬 */
+  align-items: center; /* a 요소 내부 텍스트를 수직 중앙 정렬 */
+}
+
+#gnb .gnb-depth2 a:hover {
+  color: #007bff;
+}
+/* nav */
+.container {
+  max-width: 1200px;
+  margin: 0px auto;
+  margin-top: 30px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+}
+.tabs {
+  display: flex;
+}
+
+.tab {
+  list-style: none;
+  display: block;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-align: center;
+  flex-grow: 1;
+  position: relative;
+}
+
+.tab a {
+  text-decoration: none;
+  color: black;
+}
+#t1 {
+  border-left: 1px solid purple;
+  border-top: 1px solid purple;
+  border-right: 1px solid purple;
+}
+#t2 {
+  border-bottom: 1px solid purple;
+  padding: 5px;
+}
+
+/* 영화 카드 */
+
+#movie_main {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* 각 카드가 위쪽에 정렬 */
+  flex-wrap: wrap; /* 카드가 화면 너비를 넘어가면 다음 줄로 이동 */
+  width: 1000px;
+  margin: 10px;
+  padding: 30px 0 0 0;
+}
+#num {
+  position: absolute;
+  font-style: italic;
+  font-size: 30px;
+  font-weight: 500;
+  color: white;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+.movie-card {
+  position: relative;
+  box-sizing: border-box;
+  flex-basis: 23%; /* 한 줄에 4개씩 배치되도록 설정 */
+  max-width: 23%;
+  padding: 10px;
+  margin: 10px;
+  text-align: start;
+}
+.poster {
+  display: block;
+  width: 100%;
+  border-radius: 5px;
+  object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 95%;
+  height: 70%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 5px;
+  padding: 5px;
+}
+.overlay p {
+  height: 8em;
+  overflow: hidden;
+  color: white;
+  margin: 5px;
+  font-size: 18px;
+}
+.movie-card:hover .overlay {
+  opacity: 1;
+}
+.details {
+  margin: 0;
+  padding: 10px;
+}
+
+.title {
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.info {
+  color: #555;
+  font-size: 10px;
+}
+
+.reserve-btn {
+  background-color: #6200ea;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reserve-btn:hover {
+  background-color: #6200ea;
+}
+
+.like-btn {
+  background-color: white;
+  border: 0.5px solid #ccc;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+/* footer */
+#footer {
+  background-color: #f8f8fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  padding: 50px;
+}
+.footer-top {
+  display: flex;
+  padding: 10px;
+  margin-bottom: 30px;
+}
+.footer-top a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 200px;
+  margin: 5px;
+}
+.inner-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ci {
+  display: flex;
+  margin: 20px 20px 0 0;
+  padding: 10px;
+}
+.footer-bottom {
+  padding: 10px 0;
+  text-align: center;
+}
+
+.footer-bottom .inner-wrap {
+  display: flex; /* 플렉스 박스 사용 */
+  justify-content: space-between; /* 요소 사이 공간 배분 */
+  align-items: center; /* 요소 수직 정렬 */
+  max-width: 1000px; /* 최대 너비 설정 */
+  margin: 0 auto; /* 가운데 정렬 */
+}
+
+.footer-bottom .ci img {
+  max-height: 50px; /* 이미지 최대 높이 설정 */
+}
+.footer-bottom .footer-info {
+  text-align: center; /* 텍스트 중앙 정렬 */
+}
+
+.footer-bottom .footer-info address,
+.footer-bottom .footer-info span {
+  display: inline; /* 한 줄로 정렬 */
+  margin-right: 10px; /* 요소 간의 여백 */
+}
+
+.footer-bottom .footer-info span:last-child {
+  margin-right: 0; /* 마지막 요소의 오른쪽 여백 제거 */
+}
