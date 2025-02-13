@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 const menuItems = [
-  { id: 1, name: "아메리카노", price: 3000, image: "public/img/amca.png" },
-  { id: 2, name: "라떼", price: 4000, image: "public/img/latte.png" },
-  { id: 3, name: "카푸치노", price: 4500, image: "public/img/latte2.png" },
+  { id: 1, name: "빅맥", price: 4500, image: "public/img/big.png" },
+  { id: 2, name: "맥크리스피", price: 5500, image: "public/img/chicken.png" },
+  { id: 3, name: "베이컨버거", price: 4500, image: "public/img/bac.png" },
 ];
 
 export default function Kiosk() {
@@ -22,7 +22,6 @@ export default function Kiosk() {
             : cartItem
         );
       } else {
-        // 새 상품 추가 (count = 1)
         return [...prevCart, { ...item, count: 1 }];
       }
     });
