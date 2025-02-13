@@ -1,6 +1,7 @@
 import ReKiosk from "./ex05-app/ReKiosk";
 import Tackout from "./ex05-app/Tackout";
 import MenuCheck from "./ex05-app/MenuCheck";
+import Main from "./ex05-app/Main";
 import "/src/display.css";
 
 export default function App() {
@@ -20,6 +21,9 @@ export default function App() {
         <MenuCheck />
       </div> */}
       {/* </div> */}
+      <div className="mainContainerbox">
+        <Main />
+      </div>
     </div>
   );
 }
