@@ -53,7 +53,7 @@ function Main() {
         </button>
       </div>
       <div className="relative h-[100px] flex">
-        <img src="img/fjlogo.png" className="w-[50%] absolute bottom-0" />
+        <img src="img/fjlogo.png" className="w-[45%] absolute bottom-0" />
         <img
           src="img/digitallogo.png"
           className="w-[50%] absolute bottom-0 right-0"
