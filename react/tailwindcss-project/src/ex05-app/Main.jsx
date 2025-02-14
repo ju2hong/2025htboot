@@ -1,7 +1,7 @@
 function Main() {
   const card = {
-    maxWidth: "200px",
-    height: "150px",
+    maxWidth: "180px",
+    height: "200px",
     borderRadius: "20px",
     boxShadow: "4px 4px 10px rgba(0, 0, 0, 0.5)",
   };
@@ -14,7 +14,7 @@ function Main() {
           className="max-w-full h-[50px] object-contain"
         />
       </div>
-      <div className="flex flex-wrap justify-center items-center">
+      <div className="flex flex-wrap justify-center items-center mt-[100px]">
         <button style={card} className="bg-orange-400 m-2 w-1/2">
           <img src="img/burger.png" className="absolute w-[200px]" />
           <div className="flex justify-center items-center mt-[100px] w-[100%] h-[15%] bg-white">
@@ -27,7 +27,7 @@ function Main() {
             <h1 className="font-bold">카페</h1>
           </div>
         </button>
-        <button style={card} className="bg-green-500 m-2 w-1/2">
+        <button style={card} className="bg-green-400 m-2 w-1/2">
           <img src="img/sick.png" className="absolute w-[200px]" />
           <div className="flex justify-center items-center mt-[100px] w-[100%] h-[15%] bg-white">
             <h1 className="font-bold">병원</h1>
@@ -51,6 +51,13 @@ function Main() {
             <h1 className="font-bold">버스</h1>
           </div>
         </button>
+      </div>
+      <div className="relative h-[100px] flex">
+        <img src="img/fjlogo.png" className="w-[50%] absolute bottom-0" />
+        <img
+          src="img/digitallogo.png"
+          className="w-[50%] absolute bottom-0 right-0"
+        />
       </div>
     </div>
   );
