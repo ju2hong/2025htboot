@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; //하이퍼링크-바로가기
 
 const menuItems = [
   { id: 1, name: "빅맥", price: 4500, image: "public/img/big.png" },
@@ -8,6 +9,8 @@ const menuItems = [
 
 export default function ReKiosk() {
   const [cart, setCart] = useState([]);
+  const navigate = useNavigate();
+
   const body = {
     width: " 100vw",
     height: "100vh" /* 9:16 비율 (9 / 16 * 100vw) */,
@@ -119,10 +122,13 @@ export default function ReKiosk() {
           </button>
         </div>
         <div className="flex justify-center items-center">
-          <button className="bg-red-600 p-3 m-1 rounded-md text-white">
+          <button className="bg-red-600 p-2 m-1 w-[150px] rounded-md text-white">
             주문취소
           </button>
-          <button className="bg-green-800 p-3 m-1 rounded-md text-white">
+          <button
+            className="bg-green-800 p-2 m-1  w-[150px] rounded-md text-white"
+            onClick={() => navigate("/menucheck")}
+          >
             다음
           </button>
         </div>

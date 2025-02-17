@@ -9,27 +9,11 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index element={<Main />} className="body" />
-        <Route path="/takeout" element={<Tackout />} className="body" />
-        <Route path="/rekiosk" element={<ReKiosk />} className="body" />
+        <Route index element={<Main />} />
+        <Route path="/takeout" element={<Tackout />} />
+        <Route path="/rekiosk" element={<ReKiosk />} />
+        <Route path="/menucheck" element={<MenuCheck />} />
       </Routes>
     </BrowserRouter>
-    //   <div className="flex justify-center items-center">
-    //    <div className="kiosk-container">
-    //       <Kiosk />
-    //     </div>
-    //   <div className="kiosk-container">
-    //     <ReKiosk />
-    //   </div>
-    //  <div className="containerbox">
-    //     <Tackout />
-    //   </div>
-    //   <div className="containerbox flex justify-start items-center">
-    //     <MenuCheck />
-    //   </div>
-    //    </div>
-    //   <div className="mainContainerbox">
-    //     <Main />
-    //   </div>
   );
 }
