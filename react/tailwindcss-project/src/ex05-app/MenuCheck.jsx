@@ -5,10 +5,12 @@ function MenuCheck() {
   const navigate = useNavigate();
 
   const menu = {
+    position: "relative",
     backgroundColor: "white",
     border: "1px solid black",
     borderRadius: 10,
     width: 300,
+    height: 500,
     maxHeight: 700,
   };
   const body = {
@@ -76,86 +78,91 @@ function MenuCheck() {
             <div className="flex justify-center border-b border-dashed border-emerald-950 p-2">
               총 금액 :
             </div>
-            {visibility.item1 && (
-              <div className="flex justify-start m-2 border-b border-dashed border-emerald-950">
-                <img
-                  src={menuItems[0].image}
-                  alt={menuItems[0].name}
-                  className="w-20 h-20 object-fill mb-2 rounded-lg"
-                />
-                <div className="flex flex-col justify-start ml-3 ">
-                  <h2 className=" m-1">{menuItems[1].name}</h2>
-                  <h2 className=" m-1">\{menuItems[1].price}</h2>
-                  <div className="flex flex-row">
-                    <button
-                      className="bg-red-700 rounded w-5 text-white m-2"
-                      onClick={counterdown}
-                    >
-                      -
-                    </button>
-                    <h1 className="m-2">{count}</h1>
-                    <button
-                      className="bg-blue-500 rounded w-5 text-white m-2"
-                      onClick={counterup}
-                    >
-                      +
-                    </button>
-                    <div className="flex flex-col justify-center ml-3 ">
+            <div className="flex justify-center border-b border-dashed border-emerald-950">
+              {visibility.item1 && (
+                <div className="flex justify-start m-2">
+                  <img
+                    src={menuItems[0].image}
+                    alt={menuItems[0].name}
+                    className="w-20 h-20 object-fill mb-2 rounded-lg"
+                  />
+                  <div className="flex flex-col justify-start ml-3 ">
+                    <h2 className=" m-1">{menuItems[1].name}</h2>
+                    <h2 className=" m-1">\{menuItems[1].price}</h2>
+                    <div className="flex flex-row">
                       <button
-                        className=" bg-green-800 p-1 text-sm text-white rounded"
-                        onClick={() => removeItem("item1")}
+                        className="bg-red-700 rounded w-5 text-white m-2"
+                        onClick={counterdown}
                       >
-                        삭제하기
+                        -
                       </button>
+                      <h1 className="m-2">{count}</h1>
+                      <button
+                        className="bg-blue-500 rounded w-5 text-white m-2"
+                        onClick={counterup}
+                      >
+                        +
+                      </button>
+                      <div className="flex flex-col justify-center ml-3 ">
+                        <button
+                          className=" bg-green-800 w-[60px] h-[30px] text-sm text-white rounded"
+                          onClick={() => removeItem("item1")}
+                        >
+                          삭제하기
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
-            {visibility.item2 && (
-              <div className="flex justify-start border-b border-solid border-emerald-950 m-2 p-2">
-                <img
-                  src={menuItems[1].image}
-                  alt={menuItems[1].name}
-                  className="w-20 h-20 object-fill mb-2 rounded-lg"
-                />
-                <div className="flex flex-col justify-start ml-3 ">
-                  <h2 className=" m-1">{menuItems[1].name}</h2>
-                  <h2 className=" m-1">\{menuItems[1].price}</h2>
-                  <div className="flex flex-row">
+              )}
+            </div>
+            <div className="flex justify-center">
+              {visibility.item2 && (
+                <div className="flex justify-center m-2 p-2">
+                  <img
+                    src={menuItems[1].image}
+                    alt={menuItems[1].name}
+                    className="w-20 h-20 object-fill mb-2 rounded-lg"
+                  />
+                  <div className="flex flex-col justify-start ml-3 ">
+                    <h2 className=" m-1">{menuItems[1].name}</h2>
+                    <h2 className=" m-1">\{menuItems[1].price}</h2>
+                    <div className="flex flex-row">
+                      <button
+                        className="bg-red-700 rounded w-5 text-white m-2"
+                        onClick={counterdown1}
+                      >
+                        -
+                      </button>
+                      <h1 className="m-2 border-black">{count1}</h1>
+                      <button
+                        className="bg-blue-500 rounded w-5 text-white m-2"
+                        onClick={counterup1}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+                  <div className="flex flex-col justify-center ml-3 ">
                     <button
-                      className="bg-red-700 rounded w-5 text-white m-2"
-                      onClick={counterdown1}
+                      className=" bg-green-800 p-1 text-sm text-white rounded"
+                      onClick={() => removeItem("item2")}
                     >
-                      -
-                    </button>
-                    <h1 className="m-2 border-black">{count1}</h1>
-                    <button
-                      className="bg-blue-500 rounded w-5 text-white m-2"
-                      onClick={counterup1}
-                    >
-                      +
+                      삭제하기
                     </button>
                   </div>
                 </div>
-                <div className="flex flex-col justify-center ml-3 ">
-                  <button
-                    className=" bg-green-800 p-1 text-sm text-white rounded"
-                    onClick={() => removeItem("item2")}
-                  >
-                    삭제하기
-                  </button>
-                </div>
-              </div>
-            )}
-            <div className="flex justify-center items-end">
+              )}
+            </div>
+
+            <div className="absolute w-[100%] flex justify-center bottom-1 border-t border-solid border-emerald-950 ">
               <button
-                className="bg-red-700 text-white rounded p-1 m-2"
+                className="bg-red-700 text-white text-sm rounded-lg p-2 m-2"
                 onClick={() => navigate("/rekiosk")}
               >
                 이전으로
               </button>
-              <button className="bg-green-800 text-white rounded m-2 p-1">
+              <button className="bg-green-800 text-white text-sm rounded-lg m-2 p-2">
                 결제하기
               </button>
             </div>
