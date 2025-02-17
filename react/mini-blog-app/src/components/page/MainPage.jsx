@@ -51,6 +51,7 @@ function MainPage() {
             navigate(`/post/${item.id}`);
           }}
         ></PostList>
+        <Button title="지우기" onClick={() => setPosts([])}></Button>
       </Container>
     </Wrapper>
   );
