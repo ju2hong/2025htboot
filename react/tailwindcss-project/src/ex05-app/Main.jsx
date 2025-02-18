@@ -36,7 +36,7 @@ function Main() {
             className="max-w-full h-[50px] object-contain"
           />
         </div>
-        <div className="flex flex-wrap justify-center items-center mt-[100px]">
+        <div className="flex flex-wrap justify-center items-center mt-[50px]">
           <button
             style={card}
             className="bg-orange-400 m-2 w-1/2"
@@ -80,12 +80,9 @@ function Main() {
             </div>
           </button>
         </div>
-        <div className="relative h-[100px] flex">
-          <img src="img/fjlogo.png" className="w-[45%] absolute bottom-0" />
-          <img
-            src="img/digitallogo.png"
-            className="w-[50%] absolute bottom-0 right-0"
-          />
+        <div className="h-[100px] flex items-end">
+          <img src="img/fjlogo.png" className="w-[45%] bottom-0" />
+          <img src="img/digitallogo.png" className="w-[50%] bottom-0 right-0" />
         </div>
       </div>
     </div>
