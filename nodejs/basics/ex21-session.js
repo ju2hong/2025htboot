@@ -19,7 +19,7 @@ const MongoStore = require('connect-mongo')
 const app = express()
 app.use(cookieParser())
 
-const MONGO_URI = ''
+const MONGO_URI = 'mongodb+srv://admin:1234@mondodb-cluster.qpmlq.mongodb.net'
 
 //미들웨어 express-session 등록
 app.use(
