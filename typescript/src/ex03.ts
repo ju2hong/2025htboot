@@ -4,7 +4,7 @@ let user1 = {
   name: '홍길동',
 }
 
-// 'objext'형식에 'id'속성은 없습니다.
+// 'object'형식에 'id'속성은 없습니다.
 user1.id
 
 // 객체 리터럴 타입
