@@ -190,9 +190,9 @@ FROM 고객;
 -- 3. 실주문금액 : 주문금액 - 할인금액
 SELECT * FROM 주문세부;
 SELECT *, 
-       FLOOR(주문수량 * 단가 / 10) * 10 AS 주문금액, 
-       FLOOR(주문수량 * 단가 * 할인율 / 10) * 10 AS 할인금액, 
-       FLOOR((주문수량 * 단가 - 주문수량 * 단가 * 할인율) / 10) * 10 AS 실주문금액
+       주문수량 * 단가 AS 주문금액,
+       TRUNCATE(주문수량 * 단가 * 할인율,-1) AS 할인금액, 
+       주문수량 * 단가 - TRUNCATE(주문수량 * 단가 * 할인율,-1) AS 실주문금액
 FROM 주문세부;
 
 
@@ -259,3 +259,34 @@ SELECT *
 FROM 주문
 WHERE DATEDIFF(발송일, 요청일) >= 7;
 
+-- 실전문제
+
+-- 1. 고객테이블에서 이름에 '정'이 들어가는 담당자명을 검색하시오.
+SELECT * FROM 고객;
+SELECT *
+FROM 고객
+WHERE 담당자명 LIKE '%정%';
+-- 2. 주문테이블에서 2020년 2사분기의 주문내역을 보이시오.
+SELECT * FROM 주문;
+SELECT *
+FROM 주문
+WHERE 주문일 BETWEEN '2020-04-01' AND '2020-06-30';
+-- 3. 제품테이블에서 제품번호, 제품명, 재고, 재고구분을 보이시오.
+	-- 재고구분 : 재고가 100개 이상이면 '과다재고', 10개 이상이면 '적정', 나머지는 '재고부족'
+SELECT * FROM 제품;
+SELECT 제품번호,
+	   제품명,
+	   재고,
+	CASE 
+	WHEN 재고 > 100 THEN '과다재고'
+	WHEN 재고 > 10 THEN '적정'
+	ELSE '재고부족'
+	END AS 재고구분
+FROM 제품;
+-- 4. 사원테이블에서 입사한 지 40개월이 지난 사원을 찾아 이름, 부서번호, 직위, 입사일, 입사일수, 입사개월수를 보이시오.
+SELECT * FROM 사원;
+SELECT 이름,부서번호,직위,입사일,
+	   TIMESTAMPDIFF(DAY, 입사일, now()) AS 입사일수,
+	   TIMESTAMPDIFF(MONTH, 입사일, now()) AS 입사개월수
+FROM 사원
+WHERE ADDDATE(입사일, INTERVAL 40 MONTH) <= CURDATE();
