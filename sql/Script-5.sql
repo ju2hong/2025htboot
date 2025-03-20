@@ -4,7 +4,7 @@
 -- 내장 함수
 -- 1.단일행 함수
 -- 2.집계 함수(여러행 함수)
-
+use 세계무역;
 SELECT CHAR_LENGTH('HELLO') -- 글자 길이
 		,LENGTH('HELLO') -- 글자 바이트 수
 		,CHAR_LENGTH('한글')
@@ -132,3 +132,124 @@ SELECT now()
 		,DAYOFYEAR(now()) -- 올해의 지난 날(80일째)
 		,MONTHNAME(now()) -- 이번달의 이름(영문)
 		,WEEKDAY(now());  -- 월(0)~일(6)   오늘 수(2)
+
+ -- 형변환 함수
+SELECT CAST('1' AS UNSIGNED); -- 부호없는 숫자로 변환
+SELECT CAST(2 AS CHAR(1)); -- chart형 1자리로 변환
+SELECT CONVERT('1', UNSIGNED);    
+SELECT CONVERT(2, CHAR(1));
+
+-- 조건 함수 (자바의 삼항연산자와 유사)
+SELECT IF( 10 > 20, '10', '20'); -- true이면 2번째 반환, false면 3번째 반환
+SELECT IF( 12500 * 450 > 500000, '초과달성', '미달성');
+
+-- null 체크 함수
+SELECT IFNULL('123', 0);  -- 1항이 null이 아니면, 1항을 반환
+                           -- 1항이 null이면, 2항을 반환
+SELECT IFNULL(null, 0); -- null일 때를 고려하여 2항에 기본값을 넣어준다. 
+SELECT IFNULL(null, 'null입니다.');
+
+SELECT NULLIF( 12 * 10, 120 ); -- 1항과 2항이 같으면 null을 반환.
+SELECT NULLIF( 12 * 10, 1200 ); -- 1항과 2항이 같지않으면, 1항을 반환.
+
+-- 조건문 SELECT CASE문
+SELECT CASE 
+	WHEN 20 < 20 THEN '20보다 작음'
+	WHEN 20 < 30 THEN '30보다 작음'
+	ELSE '그외의 수'
+END;
+
+-- 연습문제
+-- 1. 다음 조건에 따라 고객 테이블에서 고객회사명과 전화번호를 다른 형태로 보이도록 함수를 사용해봅시다. 
+-- 고객회사명2와 전화번호2를 만드는 조건은 아래와 같습니다.
+-- 조건
+-- 1. 고객회사명2 : 기존 고객회사명 중 앞의 두 자리를 *로 변환한다.
+-- 2. 전화번호2 : 기존 전화번호의 (xxx)xxx-xxxx 형식을 xxx-xxx-xxxx형식으로 변환한다.
+SELECT * FROM 고객
+	   
+SELECT 
+	고객번호,
+	고객회사명,
+    CONCAT('**', SUBSTRING(고객회사명, 2)) AS 고객회사명2,
+    담당자명,
+    담당자직위,
+    주소,
+    도시,
+    지역,
+    전화번호,
+    REPLACE(REPLACE(전화번호, '(', ''), ')', '-') AS 전화번호2,
+    마일리지
+FROM 고객;
+
+
+-- 2. 다음 조건에 따라 주문 세부 테이블의 모든 컬럼과 주문금액, 할인금액, 실제 주문금액을 보이시오. 
+-- 이때 모든 금액은 1의 단위에서 버림을 하고 10원 단위까지 보이시오.
+-- 조건
+-- 1. 주문금액: 주문수량 * 단가
+-- 2. 할인금액 : 주문수량 * 단가 * 할인율
+-- 3. 실주문금액 : 주문금액 - 할인금액
+SELECT * FROM 주문세부;
+SELECT *, 
+       FLOOR(주문수량 * 단가 / 10) * 10 AS 주문금액, 
+       FLOOR(주문수량 * 단가 * 할인율 / 10) * 10 AS 할인금액, 
+       FLOOR((주문수량 * 단가 - 주문수량 * 단가 * 할인율) / 10) * 10 AS 실주문금액
+FROM 주문세부;
+
+
+-- 3. 사원 테이블에서 전체 사원의 이름, 생일, 만나이, 입사일, 입사일수, 
+-- 입사한 지 500일 후의 날짜를 보이시오.
+SELECT * FROM 사원;
+SELECT 이름,
+	   생일,
+	TIMESTAMPDIFF(YEAR, 생일, CURDATE()) - 
+    (DATE_FORMAT(생일, '%m%d') > DATE_FORMAT(CURDATE(), '%m%d')) AS 만나이,
+       입사일,
+    DATEDIFF(CURDATE(), 입사일) AS 입사일수,
+    DATE_ADD(입사일, INTERVAL 500 DAY) AS '500일 후 날짜'
+FROM 사원;
+	   
+
+-- 4. 고객 테이블에서 도시 컬럼의 데이터를 다음 조건에 따라 '대도시'와 '도시'로 구분하고, 
+-- 마일리지 점수에 따라서 'VVIP', 'VIP', '일반 고객'으로 구분하시오.
+-- 조건
+-- 1. 도시 구분: '특별시'나 '광역시'는 '대도시'로, 그 나머지 도시는 '도시'로 구분한다.
+-- 2. 마일리지 구분 : 마일리지가 100,000점 이상이면 'VVIP고객', 10,000점 이상이면 'VIP고객', 그 나머지는 '일반고객'으로 구분한다.
+SELECT * FROM 고객;
+SELECT 
+	고객번호,
+	고객회사명,
+    도시,
+    -- '특별시'나 '광역시'가 포함된 경우 '대도시', 나머지는 '도시'
+    CASE 
+        WHEN 도시 LIKE '%특별시' OR 도시 LIKE '%광역시' THEN '대도시'
+        ELSE '도시'
+    END AS 도시구분,
+    마일리지,
+    -- 마일리지 점수에 따라 VVIP, VIP, 일반 고객 구분
+    CASE 
+        WHEN 마일리지 >= 100000 THEN 'VVIP고객'
+        WHEN 마일리지 >= 10000 THEN 'VIP고객'
+        ELSE '일반고객'
+    END AS 마일리지등급
+FROM 고객;
+
+-- 5. 주문 테이블에서 주문번호, 고객번호, 주문일 및 주문년도, 분기, 
+-- 월, 일, 요일, 한글요일을 보이시오.
+SELECT * FROM 주문;
+SELECT 
+    주문번호,
+    고객번호,
+    주문일,
+	요청일,
+	발송일,
+    -- 한글 요일 변환
+    CASE DAYOFWEEK(주문일)
+        WHEN 1 THEN '일요일'
+        WHEN 2 THEN '월요일'
+        WHEN 3 THEN '화요일'
+        WHEN 4 THEN '수요일'
+        WHEN 5 THEN '목요일'
+        WHEN 6 THEN '금요일'
+        WHEN 7 THEN '토요일'
+    END AS 한글요일
+FROM 주문;
