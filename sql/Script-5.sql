@@ -253,3 +253,9 @@ SELECT
         WHEN 7 THEN '토요일'
     END AS 한글요일
 FROM 주문;
+
+-- 6. 주문 테이블에서 요청일보다 발송일이 7일 이상 늦은 주문내역을 보이시오.
+SELECT *
+FROM 주문
+WHERE DATEDIFF(발송일, 요청일) >= 7;
+
