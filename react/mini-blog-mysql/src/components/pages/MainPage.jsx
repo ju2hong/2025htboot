@@ -50,7 +50,7 @@ function MainPage() {
         <PostList
           posts={posts}
           onClickItem={(item) => {
-            navigate(`/post/${item._id}`); //몽고DB의 _id 사용함.
+            navigate(`/post/${item.id}`); //몽고DB의 _id 사용함.
           }}
         ></PostList>
       </Container>

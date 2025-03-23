@@ -5,7 +5,7 @@ import PostListItem from "./PostListItem";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  aligh-items: flex-start;
+  align-items: flex-start;
   justify-content: center;
   gap: 10px;
 
