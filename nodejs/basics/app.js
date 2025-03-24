@@ -120,6 +120,19 @@ app.post('/posts/:id/comments', (req, res) => {
     })
   })
 })
+// 댓글 목록 조회 (GET 요청)
+app.get('/posts/:id/comments', (req, res) => {
+  const postId = req.params.id
+
+  // 해당 포스트의 댓글을 모두 조회
+  const sql = 'SELECT * FROM comments WHERE post_id = ?'
+  conn.query(sql, [postId], (err, comments) => {
+    if (err) {
+      return res.status(500).json({ error: err.message })
+    }
+    res.json({ post_id: postId, comments })
+  })
+})
 
 // 서버 실행
 app.listen(port, () => {

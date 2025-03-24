@@ -73,7 +73,7 @@ function PostViewPage(props) {
 
   //댓글 추가 함수
   const handleAddComment = () => {
-    if (!comment) return;
+    if (!comment.trim()) return; // 공백 댓글 방지
 
     fetch(`http://localhost:5000/posts/${postId}/comments`, {
       method: "POST",
@@ -81,9 +81,25 @@ function PostViewPage(props) {
       body: JSON.stringify({ content: comment }),
     })
       .then((res) => res.json())
-      .then((updatedPost) => {
-        setPost(updatedPost); //업데이트된 게시글 상태 반영
-        setComment("");
+      .then((newComment) => {
+        if (!newComment) {
+          console.error("댓글 추가 실패");
+          return;
+        }
+
+        // 기존 댓글 리스트 유지하면서 새로운 댓글 추가
+        setPost((prevPost) => {
+          const updatedComments = prevPost.comments
+            ? [...prevPost.comments, newComment]
+            : [newComment];
+
+          return {
+            ...prevPost,
+            comments: updatedComments, // 기존 댓글 유지 + 새로운 댓글 추가
+          };
+        });
+
+        setComment(""); // 입력 필드 초기화
       })
       .catch((err) => console.error("Error adding comment:", err));
   };
