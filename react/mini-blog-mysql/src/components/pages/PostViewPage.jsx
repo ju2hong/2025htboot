@@ -16,7 +16,6 @@ const Wrapper = styled.div`
 const Container = styled.div`
   width: 100%;
   max-width: 720px;
-
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -56,22 +55,37 @@ function PostViewPage(props) {
   const { postId } = useParams();
 
   const [post, setPost] = useState(null);
+  const [comments, setComments] = useState([]); // 🔹 댓글을 별도 상태로 관리
   const [comment, setComment] = useState("");
 
-  //백엔드에서 게시글 단건 조회하기
+  // 📌 백엔드에서 게시글 단건 조회
   useEffect(() => {
     fetch(`http://localhost:5000/posts/${postId}`)
       .then((res) => res.json())
       .then((data) => {
         if (data) {
           setPost(data);
+          fetchComments(); // 🔹 게시글 가져올 때 댓글도 같이 불러오기
         } else {
           console.error("Post not found");
         }
-      });
+      })
+      .catch((err) => console.error("Error fetching post:", err));
   }, [postId]);
 
-  //댓글 추가 함수
+  // 📌 댓글 불러오기 함수
+  const fetchComments = () => {
+    fetch(`http://localhost:5000/posts/${postId}/comments`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.comments) {
+          setComments(data.comments); // 🔹 최신 댓글 목록으로 갱신
+        }
+      })
+      .catch((err) => console.error("Error fetching comments:", err));
+  };
+
+  // 📌 댓글 추가 함수
   const handleAddComment = () => {
     if (!comment.trim()) return; // 공백 댓글 방지
 
@@ -86,25 +100,13 @@ function PostViewPage(props) {
           console.error("댓글 추가 실패");
           return;
         }
-
-        // 기존 댓글 리스트 유지하면서 새로운 댓글 추가
-        setPost((prevPost) => {
-          const updatedComments = prevPost.comments
-            ? [...prevPost.comments, newComment]
-            : [newComment];
-
-          return {
-            ...prevPost,
-            comments: updatedComments, // 기존 댓글 유지 + 새로운 댓글 추가
-          };
-        });
-
         setComment(""); // 입력 필드 초기화
+        fetchComments(); // 🔹 최신 댓글 목록 불러오기
       })
       .catch((err) => console.error("Error adding comment:", err));
   };
 
-  //게시글 삭제하기
+  // 📌 게시글 삭제하기
   const handleDeletePost = () => {
     fetch(`http://localhost:5000/posts/${postId}`, {
       method: "DELETE",
@@ -118,39 +120,31 @@ function PostViewPage(props) {
   };
 
   if (!post) {
-    console.log("포스트를 찾을 수 없습니다.");
     return <Wrapper>포스트를 찾을 수 없습니다.</Wrapper>;
   }
 
   return (
     <Wrapper>
       <Container>
-        <Button
-          title="뒤로 가기"
-          onClick={() => {
-            navigate("/");
-          }}
-        />
+        <Button title="뒤로 가기" onClick={() => navigate("/")} />
 
         <PostContainer>
           <TitleText>{post.title}</TitleText>
           <ContentText>{post.content}</ContentText>
         </PostContainer>
 
-        {post.comments?.length > 0 && <CommentLabel>댓글</CommentLabel>}
-        {post.comments?.map((comment) => (
-          <CommentContainer key={comment.id}>
-            <ContentText>{comment.content}</ContentText>
+        {comments.length > 0 && <CommentLabel>댓글</CommentLabel>}
+        {comments.map((c) => (
+          <CommentContainer key={c.id}>
+            <ContentText>{c.content}</ContentText>
           </CommentContainer>
         ))}
+
         <TextInput
           height={40}
           value={comment}
-          onChange={(event) => {
-            setComment(event.target.value);
-          }}
+          onChange={(event) => setComment(event.target.value)}
         />
-
         <Button title="댓글 작성하기" onClick={handleAddComment} />
         <Button title="포스트 삭제하기" onClick={handleDeletePost} />
       </Container>
