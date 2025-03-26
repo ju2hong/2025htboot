@@ -45,7 +45,7 @@ const CommentLabel = styled.p`
 
 const CommentContainer = styled.div`
   padding: 8px 16px;
-  border: 1px solid #ddd;
+  border: 1px solid grey;
   border-radius: 4px;
   margin-top: 8px;
 `;
