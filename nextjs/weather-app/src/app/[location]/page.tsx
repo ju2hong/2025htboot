@@ -35,7 +35,7 @@ export default async function Detail({ params }: Props) {
               src={`http:${day.day.condition.icon}`}
               alt={day.day.condition.text}
             />
-            <span>{day.day.condition.text}</span>{' '}
+            <span>{day.day.condition.text}</span>
           </li>
         ))}
       </ul>
