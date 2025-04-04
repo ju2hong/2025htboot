@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>자판기 상품 추가</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #222;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        background-color: #c91d1d;
+        color: white;
+        width: 400px;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        border: 3px solid black;
+    }
+    .title {
+        font-size: 20px;
+        font-weight: bold;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        text-align: left;
+        font-weight: bold;
+        margin: 10px 0 5px;
+    }
+    input {
+        width: 100%;
+        padding: 8px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 15px;
+    }
+    button {
+        flex: 1;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    .submit-btn {
+        background-color: black;
+        color: white;
+        margin-right: 5px;
+    }
+    .back-btn {
+        background-color: white;
+        color: black;
+        margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="title">★ 자판기 상품 추가 ★</div>
+
+  <label for="product-name">상품명:</label>
+  <input type="text" id="product-name" value="">
+
+  <label for="price">가격:</label>
+  <input type="number" id="price" value="">
+
+  <label for="expiration">유통기한:</label>
+  <input type="date" id="expiration" value="">
+
+  <div class="buttons">
+    <button class="submit-btn">상품 추가 완료!</button>
+    <button class="back-btn">돌아가기</button>
+  </div>
+</div>
+</body>
+</html>
