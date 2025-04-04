@@ -16,7 +16,7 @@ public class Answer {
     private Integer id;
 
     @Column(columnDefinition = "TEXT")
-    private Integer content;
+    private String content;
 
     private LocalDateTime createDate;
 

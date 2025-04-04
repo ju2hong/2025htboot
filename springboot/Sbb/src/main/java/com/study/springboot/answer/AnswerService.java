@@ -13,7 +13,7 @@ public class AnswerService {
 
     public void create(Question question, String content){
         Answer answer = new Answer();
-        answer.setContent(Integer.valueOf(content));
+        answer.setContent(content);
         answer.setCreateDate(LocalDateTime.now());
         answer.setQuestion(question);
         this.answerRepository.save(answer);
