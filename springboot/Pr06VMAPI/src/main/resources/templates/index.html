@@ -122,8 +122,13 @@
             margin-top: 10px;
             text-align: right;
             font-weight: bold;
-            width: 90%;
-        }
+            width: 50%;
+           /* 위치 정렬 */
+            align-self: flex-end;
+
+            /* 필요시 우측 여백 추가 */
+            margin-right: 3%;
+            }
         .add-btn {
             background: #e33;
             color: white;
@@ -158,14 +163,72 @@
     <div class="content">
         <div class="product-list">상품 목록이 비어있습니다.</div>
         <div class="status">▲ 총 0개의 상품이 있습니다.</div>
-        <button class="add-btn"  id="addProductBtn">상품 추가하기!</button>
+        <button th:href="@{/api/add}" class="add-btn"  id="addProductBtn">상품 추가하기!</button>
     </div>
 </div>
 
-<script>
+    <script>
+        // 상품 목록 불러오기
+        async function loadProducts() {
+            const res = await fetch('/api/products');
+            const products = await res.json();
+
+            const listEl = document.querySelector('.product-list');
+            const statusEl = document.querySelector('.status');
+
+            if (products.length === 0) {
+                listEl.innerHTML = "상품 목록이 비어있습니다.";
+                statusEl.innerHTML = "▲ 총 0개의 상품이 있습니다.";
+                return;
+            }
+
+            listEl.innerHTML = products.map(p =>
+                `<div>🧃 ${p.name} - ${p.price}원 (${p.expireDate})</div>`
+            ).join('');
+            statusEl.innerHTML = `▲ 총 ${products.length}개의 상품이 있습니다.`;
+        }
+
+        // 한글/ENG 토글
         document.getElementById('toggle').addEventListener('click', function () {
             this.classList.toggle('active');
         });
+
+        // 상품 추가 버튼 (임시로 prompt 사용)
+        document.getElementById('addProductBtn').addEventListener('click', async function () {
+            const name = prompt("상품 이름을 입력하세요:");
+            const price = prompt("상품 가격을 입력하세요:");
+            const expireDate = prompt("유통기한을 입력하세요 (예: 2025-12-31):");
+
+            if (!name || !price || !expireDate) {
+                alert("모든 값을 입력해주세요.");
+                return;
+            }
+
+            const product = {
+                name: name,
+                price: parseInt(price),
+                expireDate: expireDate
+            };
+
+            const res = await fetch('/api/products', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(product)
+            });
+
+            if (res.ok) {
+                alert("상품이 추가되었습니다!");
+                loadProducts();
+            } else {
+                alert("상품 추가 실패!");
+            }
+        });
+
+        // 페이지 로딩 시 상품 목록 불러오기
+        window.onload = loadProducts;
 </script>
+
 </body>
 </html>
