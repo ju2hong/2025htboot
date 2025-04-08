@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>연습문제 - 계산기 프로그램</title>
+  <link rel="stylesheet" href="/style.css">
+  <script>
+    function clearFields() {
+        document.getElementById("num1").value = "";
+        document.getElementById("num2").value = "";
+        document.getElementById("result").value = "";
+        document.getElementById("status").innerText = "";
+    }
+
+    function onCalculate(op) {
+        let num1 = parseFloat(document.getElementById("num1").value);
+        let num2 = parseFloat(document.getElementById("num2").value);
+
+        if (isNaN(num1) || isNaN(num2)) {
+            return;
+        }
+
+        fetch(`http://localhost:8080/api/v1/${op}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ num1: num1, num2: num2 })
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("서버 오류");
+            }
+            return response.json();
+        })
+        .then(json => {
+            document.getElementById("result").value = json.result;
+            document.getElementById("status").innerText = json.status;
+        })
+        .catch(error => {
+            console.error("에러:", error);
+        });
+
+    }
+
+  </script>
+</head>
+<body>
+<div id="wrap">
+  <div>
+    <p>JavaScript</p>
+    <p>계산기 프로그램을 작성해보자</p>
+  </div>
+  <div>
+    <label>숫자 1</label>
+    <input type="text" id="num1" value="" />
+    <br />
+  </div>
+  <div>
+    <label>숫자 2</label>
+    <input type="text" id="num2" value="" />
+    <br />
+  </div>
+  <div id="res">
+    <label>연산 결과</label>
+    <input type="text" disabled id="result" value="" />
+  </div>
+<!--  <div id="res2">-->
+<!--    상태   :   <a id="status"></a>-->
+<!--  </div>-->
+  <div id="btn-group">
+    <button id="add1" onclick="onCalculate('add')">덧셈</button>
+    <button id="sub1" onclick="onCalculate('sub')">뺄셈</button>
+    <button id="mul1" onclick="onCalculate('mul')">곱셈</button>
+    <button id="divide1" onclick="onCalculate('divide')">나눗셈</button>
+    <button id="del1" onclick="clearFields()">지우기</button>
+  </div>
+</div>
+</body>
+</html>
