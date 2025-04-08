@@ -1,0 +1,172 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #222;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background-color: #c91d1d;
+  color: white;
+  width: 400px;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  border: 3px solid black;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.dropdown {
+  background: white;
+  color: #c91d1d;
+  padding: 6px 12px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.toggle-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 4px 8px;
+  border-radius: 15px;
+}
+
+.toggle-container label {
+  font-size: 14px;
+  color: #c91d1d;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+.toggle {
+  width: 36px;
+  height: 18px;
+  background: #ccc;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+}
+
+.toggle::before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: white;
+  border-radius: 50%;
+  top: 1px;
+  left: 2px;
+  transition: 0.3s;
+}
+
+.toggle.active::before {
+  left: 18px;
+  background: #c91d1d;
+}
+
+.end-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: 2px solid white;
+  color: white;
+  font-size: 18px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-list {
+  background: white;
+  color: #222;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-weight: bold;
+  width: 90%;
+}
+
+.status {
+  background: white;
+  color: red;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-top: 10px;
+  text-align: right;
+  font-weight: bold;
+  width: 50%;
+  align-self: flex-end;
+  margin-right: 3%;
+}
+
+.add-btn {
+  background: #e33;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  font-size: 14px;
+  width: 90%;
+}
+
+/* 테이블 스타일 */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 5px;
+  text-align: center;
+}
+
+th {
+  background-color: #f4f4f4;
+  color: #222;
+}
+
+td {
+  background-color: #fff;
+  color: #222;
+}
