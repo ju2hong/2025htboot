@@ -4,71 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>자판기 상품 등록</title>
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #222;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
-    .container {
-        background-color: #c91d1d;
-        color: white;
-        width: 400px;
-        padding: 15px;
-        border-radius: 10px;
-        text-align: center;
-        border: 3px solid black;
-    }
-    .title {
-        font-size: 20px;
-        font-weight: bold;
-        font-style: italic;
-        margin-bottom: 15px;
-    }
-    label {
-        display: block;
-        text-align: left;
-        font-weight: bold;
-        margin: 10px 0 5px;
-    }
-    input {
-        width: 90%;
-        padding: 8px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        margin-bottom: 10px;
-    }
-    .buttons {
-        display: flex;
-        justify-content: center;
-        margin-top: 15px;
-    }
-    button {
-        padding: 10px 20px;
-        font-size: 14px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-weight: bold;
-        background-color: black;
-        color: white;
-    }
-  </style>
+  <link rel="stylesheet" href="/style.css">
+
 </head>
 <body>
 <div class="container">
   <div class="title">★ 자판기 상품 등록 ★</div>
 
-  <form id="productForm">
+  <form id="productForm" th:action="@{/api/products}" method="post" th:object="${product}">
     <input type="text" name="name" placeholder="상품명" required><br>
     <input type="number" name="price" placeholder="가격" required><br>
     <input type="date" name="limit_date" required><br>
-
     <div class="buttons">
       <button type="submit" method="post">상품 등록</button>
     </div>

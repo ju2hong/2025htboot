@@ -1,6 +1,6 @@
 package com.study.springboot;
 
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,17 +21,34 @@ public class ProductController {
         return productService.getAllProducts(); // 상품 리스트 반환
     }
 
-    // 상품 추가 페이지로 이동 (타임리프 HTML 페이지 사용 시)
-    @GetMapping("/add")
-    public String addProductPage(Model model) {
-        model.addAttribute("product", new Product());
-        return "add"; // templates/add.html
-    }
-
     // JSON 데이터를 받는 POST 엔드포인트
     @PostMapping("/products")
     public void addProduct(@RequestBody Product product) {
         productService.addProduct(product);
     }
+
+    @GetMapping("/products/{id}")
+    public ResponseEntity<Product> getProductById(@PathVariable Long id) {
+        List<Product> products = productService.getAllProducts();
+        return products.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst()
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+
+    @PutMapping("/products/{id}")
+    public ResponseEntity<Void> updateProduct(@PathVariable Long id, @RequestBody Product updatedProduct) {
+        productService.updateProduct(id, updatedProduct);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/products/{id}")
+    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
+        return ResponseEntity.ok().build();
+    }
+
 
 }

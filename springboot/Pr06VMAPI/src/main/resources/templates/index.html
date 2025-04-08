@@ -242,8 +242,8 @@
                             <td style="padding:5px;">${product.name}</td>
                             <td style="padding:5px;">${product.price}원</td>
                             <td style="padding:5px;">${product.limit_date}</td>
-                            <td style="padding:5px;"><button onclick="editProduct(${product.id})" style="background:#ffc107; border:none; padding:5px 10px; cursor:pointer;">수정</button></td>
-                            <td style="padding:5px;"><button onclick="deleteProduct(${product.id})" style="background:#dc3545; color:white; border:none; padding:5px 10px; cursor:pointer;">삭제</button></td>
+                            <td style="padding:5px;"><button onclick="editProduct(${product.id})" style="background:blue; color:white; border:none; border-radius:8px; padding:5px 10px; cursor:pointer;">수정</button></td>
+                            <td style="padding:5px;"><button onclick="deleteProduct(${product.id})" style="background:red; color:white; border:none; border-radius:8px; padding:5px 10px; cursor:pointer;">삭제</button></td>
                         `;
                         tbody.appendChild(row);
                     });
@@ -261,7 +261,7 @@
     // 수정 버튼 동작 예시
     function editProduct(id) {
         alert("수정 기능 호출됨! 상품 ID: " + id);
-        // window.location.href = `/edit/${id}`; // 실제 수정 페이지로 이동 시
+        window.location.href = `/edit/${id}`; // 실제 수정 페이지로 이동 시
     }
 
     // 삭제 버튼 동작 예시
