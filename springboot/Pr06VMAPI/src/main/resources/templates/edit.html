@@ -23,7 +23,6 @@
 <script>
     const productId = window.location.pathname.split("/").pop();
 
-    // 🟡 페이지 로드시 기존 정보 가져와서 채우기
     fetch(`/api/products/${productId}`)
       .then(response => response.json())
       .then(product => {
@@ -36,7 +35,6 @@
         console.error(err);
       });
 
-    // ✅ 수정 요청 처리
     document.getElementById("editForm").addEventListener("submit", function(e) {
       e.preventDefault();
       const formData = new FormData(this);
