@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>자판기 프로그램</title>
     <link rel="stylesheet" href="/index.css">
-
+    <style>
+        #productTable, #emptyMessage {
+          display: none;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -25,10 +29,134 @@
     </div>
 
     <div class="content">
-        <div class="product-list">상품 목록이 비어있습니다.</div>
-        <div class="status">▲ 총 0개의 상품이 있습니다.</div>
+        <!-- 상품 목록 테이블 -->
+        <table class="product-table" id="productTable"
+               th:if="${not #lists.isEmpty(products)}">
+            <thead>
+            <tr>
+                <th>번호</th>
+                <th>상품명</th>
+                <th>가격</th>
+                <th>유통기한</th>
+                <th>수정</th>
+                <th>삭제</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${products}">
+                <td th:text="${p.id}">번호</td>
+                <td th:text="${p.name}">상품명</td>
+                <td th:text="${p.price}">가격</td>
+                <td th:text="${p.limit_date}">유통기한</td>
+                <td>
+                    <a th:href="@{/edit(id=${p.id})}">
+                        <button type="button" class="btn btn-edit">수정</button>
+                    </a>
+                </td>
+                <td>
+                    <form th:action="@{/delete}" method="post">
+                        <input type="hidden" name="id" th:value="${p.id}" />
+                        <button type="submit" class="btn btn-delete">삭제</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- 상품이 없을 때 메시지 -->
+        <div id="emptyMessage" class="product-list"
+             th:if="${#lists.isEmpty(products)}">
+            상품 목록이 비어있습니다.
+        </div>
+
+        <!-- 총 개수 상태 출력 -->
+        <div class="status">
+            ▲ 총 <span th:text="${productCount}">0</span>개의 상품이 있습니다.
+        </div>
+
+        <!-- 상품 추가 버튼 -->
         <a th:href="@{/add}" class="add-btn" id="addProductBtn">상품 추가하기!</a>
     </div>
 </div>
+<div id="alert-box" th:if="${msg}" th:data-msg="${msg}"></div>
+
+<script>
+    const toggle = document.getElementById("languageToggle");
+    const productTable = document.getElementById("productTable");
+    const emptyMessage = document.getElementById("emptyMessage");
+
+    const currentLang = localStorage.getItem("language") || "ko";
+    setLanguage(currentLang);
+
+    toggle.addEventListener("click", () => {
+      const newLang = (localStorage.getItem("language") === "ko") ? "en" : "ko";
+      setLanguage(newLang);
+
+    });
+
+    function setLanguage(lang) {
+      localStorage.setItem("language", lang);
+      toggle.classList.toggle("eng-mode", lang === "en");
+    // ✅ active 클래스 토글
+    if (lang === "en") {
+        toggle.classList.add("active");
+    } else {
+        toggle.classList.remove("active");
+    }
+      const count = document.querySelector(".status span").textContent;
+
+      const headers = document.querySelectorAll("th");
+
+      if (lang === "ko") {
+        document.querySelector(".title").textContent = "★ 자판기 프로그램 ★";
+        document.querySelector(".dropdown").textContent = "▽ 자판기 상품 목록";
+        document.querySelector(".add-btn").textContent = "상품 추가하기!";
+        document.querySelector(".status").innerHTML = `▲ 총 <span>${count}</span>개의 상품이 있습니다.`;
+
+        if (headers.length >= 6) {
+          headers[0].textContent = "번호";
+          headers[1].textContent = "상품명";
+          headers[2].textContent = "가격";
+          headers[3].textContent = "유통기한";
+          headers[4].textContent = "수정";
+          headers[5].textContent = "삭제";
+        }
+
+        if (emptyMessage) {
+          emptyMessage.textContent = "상품 목록이 비어있습니다.";
+        }
+
+      } else {
+        document.querySelector(".title").textContent = "★ Vending Machine Program ★";
+        document.querySelector(".dropdown").textContent = "▽ Product List";
+        document.querySelector(".add-btn").textContent = "Add Product!";
+        document.querySelector(".status").innerHTML = `▲ Total <span>${count}</span> products.`;
+
+        if (headers.length >= 6) {
+          headers[0].textContent = "No";
+          headers[1].textContent = "Product Name";
+          headers[2].textContent = "Price";
+          headers[3].textContent = "Expiry Date";
+          headers[4].textContent = "Edit";
+          headers[5].textContent = "Delete";
+        }
+
+        if (emptyMessage) {
+          emptyMessage.textContent = "The product list is empty.";
+        }
+      }
+
+      // 보여줄 테이블 또는 메시지 결정
+      if (productTable) productTable.style.display = lang === "en" || lang === "ko" ? "table" : "none";
+      if (emptyMessage) emptyMessage.style.display =
+        productTable && productTable.rows.length > 1 ? "none" : "block";
+    }
+    window.addEventListener("DOMContentLoaded", () => {
+    const alertBox = document.getElementById("alert-box");
+    if (alertBox) {
+        alert(alertBox.dataset.msg);
+        }
+    });
+</script>
 </body>
 </html>

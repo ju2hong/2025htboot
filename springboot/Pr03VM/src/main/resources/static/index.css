@@ -151,7 +151,7 @@ body {
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 14px;
+  font-size: 10px;
   margin-top: 5px;
 }
 
@@ -170,6 +170,25 @@ td {
   background-color: #fff;
   color: #222;
 }
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 10px;
+}
+
+.product-table th,
+.product-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+.product-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
 .toggle {
   width: 50px;
   height: 25px;
@@ -198,4 +217,30 @@ td {
 
 .toggle.active::before {
   transform: translateX(10px);
+}
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-edit {
+    background-color: blue;
+    color: white;
+}
+
+.btn-edit:hover {
+    background-color: #45a049;
+}
+
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #d32f2f;
 }

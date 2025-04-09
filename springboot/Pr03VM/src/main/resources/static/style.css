@@ -51,3 +51,14 @@ button {
     background-color: black;
     color: white;
 }
+.btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-left: 10px; /* 버튼 사이 간격 */
+
+}

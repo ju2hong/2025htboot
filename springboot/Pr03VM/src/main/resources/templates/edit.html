@@ -10,10 +10,11 @@
 <div class="container">
     <div class="title">★ 자판기 상품 수정 ★</div>
 
-    <form id="editForm">
-        <input type="text" name="name" placeholder="상품명" required><br>
-        <input type="number" name="price" placeholder="가격" required><br>
-        <input type="date" name="limit_date" required><br>
+    <form id="editForm" th:action="@{/edit}" method="post" th:object="${product}">
+        <input type="hidden" th:field="*{id}" />
+        <input type="text"  th:field="*{name}" placeholder="상품명" required><br>
+        <input type="number" th:field="*{price}" placeholder="가격" required><br>
+        <input type="date" th:field="*{limit_date}" required><br>
         <div class="buttons">
             <button type="submit">수정하기</button>
         </div>
