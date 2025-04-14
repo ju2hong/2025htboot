@@ -27,12 +27,22 @@ public class UserController {
                        @RequestParam String inputEmail,
                        @RequestParam String inputPw,
                        @RequestParam String inputPw2,
+                       @RequestParam(required = false) String exampleCheck1,
                        RedirectAttributes redirectAttributes) {
+        if (inputName.isEmpty()) {
+            redirectAttributes.addFlashAttribute("error", "아이디를 입력하세요.");
+            return "redirect:/join";
+        }
+
+        if (exampleCheck1 == null) {
+            redirectAttributes.addFlashAttribute("error", "약관동의 해주세요.");
+            return "redirect:/join";
+        }
         if (!inputPw.equals(inputPw2)) {
             redirectAttributes.addFlashAttribute("error", "비밀번호가 일치하지 않습니다.");
             return "redirect:/join";
         }
-        userService.sigin(inputName, inputEmail, inputPw);
+        userService.signup(inputName, inputEmail, inputPw);
         redirectAttributes.addFlashAttribute("success", "회원가입이 완료되었습니다!");
         return "redirect:/login";
     }

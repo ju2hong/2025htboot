@@ -13,7 +13,7 @@ public class UserService {
     private final List<User> userList = new ArrayList<>();
 
     //회원가입
-    public void sigin(String username, String email, String password) {
+    public void signup(String username, String email, String password) {
         userList.add(new User(username,email,password));
         logger.info("새로운 사용자 가입: {} - 이메일: {}", username, email);  // 가입된 사용자 정보 로그 출력
         logger.info("현재 등록된 사용자 수: {}", userList.size());  // 현재 등록된 사용자 수 로그 출력
@@ -27,6 +27,12 @@ public class UserService {
                 .findFirst()
                 .orElse(null);
     }
+    //중복 확인
+    public boolean isUsernameExists(String username) {
+        return userList.stream()
+                .anyMatch(user -> user.getUsername().equals(username));
+    }
+
     //디버깅용
     public List<User> getAllUsers() {
         return userList;
