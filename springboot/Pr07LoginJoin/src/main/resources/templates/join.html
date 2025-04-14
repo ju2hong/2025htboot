@@ -36,9 +36,15 @@
         <!-- 입력폼 -->
         <form
                 name="formJoin"
-                action="http://localhost:8080/join"
+                action="/join"
                 method="post"
         >
+          <!-- 성공 메시지 -->
+          <div th:if="${success}" class="alert alert-success" role="alert" th:text="${success}"></div>
+
+          <!-- 실패 메시지 -->
+          <div th:if="${error}" class="alert alert-danger" role="alert" th:text="${error}"></div>
+
           <div class="col-12 col-lg-6 order-2 order-lg-1">
             <h1 class="my-5 text-center">Sign up</h1>
             <div
