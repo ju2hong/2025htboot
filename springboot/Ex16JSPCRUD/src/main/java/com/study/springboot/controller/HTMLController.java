@@ -25,6 +25,7 @@ public class HTMLController {
     }
     @GetMapping("/joinForm")
     public String joinForm() {
+
         return "joinForm";
     }
     @PostMapping("/joinAction")
