@@ -1,0 +1,10 @@
+logging:
+  level:
+    root: info
+    com.study: debug
+
+  file:
+    name: logs/mylog.log  # log 파일 경로
+
+  pattern:
+    file: "[%d{yyyy-MM-dd HH:mm:ss.SSS}][%-5level][%logger:%line] - %msg%n"
