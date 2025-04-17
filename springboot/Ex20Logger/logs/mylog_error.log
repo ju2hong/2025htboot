@@ -1,0 +1,2 @@
+[2025-04-16 15:50:27:1888] ERROR 12800 --- [    Test worker] com.study.springboot.LogTest             : slf4j error 로깅 4
+[2025-04-16 15:50:27:1903] ERROR 12800 --- [    Test worker] com.study.springboot.LogTest             : error 로깅 9

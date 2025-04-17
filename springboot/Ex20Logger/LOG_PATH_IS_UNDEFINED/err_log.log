@@ -1,0 +1,2 @@
+[2025-04-16 15:49:28:1907] ERROR 556 --- [    Test worker] com.study.springboot.LogTest             : slf4j error 로깅 4
+[2025-04-16 15:49:28:1911] ERROR 556 --- [    Test worker] com.study.springboot.LogTest             : error 로깅 9

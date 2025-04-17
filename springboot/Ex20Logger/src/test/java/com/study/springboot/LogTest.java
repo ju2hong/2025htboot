@@ -26,7 +26,6 @@ class LogTest extends Ex20LoggerApplicationTests{
         logger.debug("debug 로깅 {}", count++);
         logger.info("info 로깅 {}", count++);
         logger.warn("warn 로깅 {}", count++);
-        logger.error(
-                "error 로깅 {}", count++);
+        logger.error("error 로깅 {}", count++);
     }
 }

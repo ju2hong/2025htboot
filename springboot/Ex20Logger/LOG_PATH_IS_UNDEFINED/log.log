@@ -1,0 +1,12 @@
+[2025-04-16 15:49:27:606] INFO  556 --- [    Test worker] com.study.springboot.LogTest             : Starting LogTest using Java 17.0.12 with PID 556 (started by user in C:\Users\user\Documents\2025htboot\springboot\Ex20Logger)
+[2025-04-16 15:49:27:607] DEBUG 556 --- [    Test worker] com.study.springboot.LogTest             : Running with Spring Boot v3.4.4, Spring v6.2.5
+[2025-04-16 15:49:27:608] INFO  556 --- [    Test worker] com.study.springboot.LogTest             : No active profile set, falling back to 1 default profile: "default"
+[2025-04-16 15:49:28:1396] INFO  556 --- [    Test worker] com.study.springboot.LogTest             : Started LogTest in 1.11 seconds (process running for 1.954)
+[2025-04-16 15:49:28:1903] DEBUG 556 --- [    Test worker] com.study.springboot.LogTest             : slf4j debug 로깅 1
+[2025-04-16 15:49:28:1907] INFO  556 --- [    Test worker] com.study.springboot.LogTest             : slf4j info 로깅 2
+[2025-04-16 15:49:28:1907] WARN  556 --- [    Test worker] com.study.springboot.LogTest             : slf4j warn 로깅 3
+[2025-04-16 15:49:28:1907] ERROR 556 --- [    Test worker] com.study.springboot.LogTest             : slf4j error 로깅 4
+[2025-04-16 15:49:28:1910] DEBUG 556 --- [    Test worker] com.study.springboot.LogTest             : debug 로깅 6
+[2025-04-16 15:49:28:1910] INFO  556 --- [    Test worker] com.study.springboot.LogTest             : info 로깅 7
+[2025-04-16 15:49:28:1911] WARN  556 --- [    Test worker] com.study.springboot.LogTest             : warn 로깅 8
+[2025-04-16 15:49:28:1911] ERROR 556 --- [    Test worker] com.study.springboot.LogTest             : error 로깅 9
