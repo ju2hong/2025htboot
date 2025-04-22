@@ -40,12 +40,14 @@ public class Board {
                  String boardContent,Long boardHit) {
      this.boardName = boardName;
      this.boardTitle = boardTitle;
+     this.boardContent = boardContent;
      this.boardHit = boardHit;
     }
     public void update(String boardName,String boardTitle,
                        String boardContent,Long boardHit) {
         this.boardName = boardName;
         this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
         this.boardHit = boardHit;
         this.boardDate = LocalDateTime.now(); //현재 시간으로 업데이트
     }

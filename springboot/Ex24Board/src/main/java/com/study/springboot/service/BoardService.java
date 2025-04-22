@@ -3,6 +3,7 @@ package com.study.springboot.service;
 import com.study.springboot.domain.board.Board;
 import com.study.springboot.domain.board.BoardRepository;
 import com.study.springboot.dto.BoardResponseDto;
+import com.study.springboot.dto.BoardSaveRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,8 @@ public class BoardService {
     //    2. B계좌 : 1000원 증가  -> 통신오류!
     //    3. 송금 내역 저장
 
+    //@Transactional : find(select) 생략가능, insert, update, delete 반드시 기술해야 됨.
+
     //전체목록보기
     @Transactional(readOnly = true)
     public List<BoardResponseDto> findAll() {
@@ -36,8 +39,50 @@ public class BoardService {
         List<Board> list = boardRepository.findAll( sort );
 
         //List<Board>를 List<BoardResponseDto>로 변환 : stream() 메소드 사용
-        List<BoardResponseDto> list2 = list.stream().map(BoardResponseDto::new).collect(Collectors.toList());
         return list.stream().map(BoardResponseDto::new).collect(Collectors.toList());
+    }    @Transactional // begin() , close()
+    public Long save(final BoardSaveRequestDto dto) {
+        //persist() , commit() , rollback()
+        Board entity = boardRepository.save(dto.toEntity());
+        return entity.getBoardIdx();
+    }
+    @Transactional(readOnly = true)
+    public Boolean existsById(Long boardIdx) {
+        boolean isFound = boardRepository.existsById(boardIdx);
+        return isFound;
+    }
+    @Transactional(readOnly = true)
+    public BoardResponseDto findById(Long boardIdx) {
+        Board entity = boardRepository.findById(boardIdx)
+                .orElseThrow(()->
+                        new IllegalArgumentException("없는 글 인덱스 입니다. boardIdx : " + boardIdx) );
+        return new BoardResponseDto(entity);
+    }
+    @Transactional
+    public void updateHit(final Long boardIdx,final Long hit) {
+        Board entity = boardRepository.findById(boardIdx)
+                .orElseThrow(()->
+                        new IllegalArgumentException("없는 글인덱스입니다. boardIdx : " + boardIdx));
+        //엔티티 클래스의 필드(멤버변수) 값만 바꿔도 자동으로 저장된다. save() 별도로 호출 안 해도 됨.
+        entity.updateHit(hit);
+        //트랜잭션 함수를 벗어날 때 자동 update, commit 이 된다.
+    }
+    @Transactional
+    public boolean update(final Long boardIdx,final BoardSaveRequestDto dto) {
+        Board entity = boardRepository.findById(boardIdx)
+                .orElseThrow(()->
+                        new IllegalArgumentException("없는 글인덱스입니다. boardIdx : "+boardIdx));
+
+        entity.update(dto.getBoardName(),dto.getBoardTitle(),
+                    dto.getBoardContent(),dto.getBoardHit());
+        return true;
+    }
+    @Transactional
+    public void delete(Long boardIdx) {
+        Board entity = boardRepository.findById(boardIdx)
+                .orElseThrow(()->
+                        new IllegalArgumentException("없는 글인덱스입니다. boardIdx : "+boardIdx));
+        boardRepository.delete(entity);
     }
 }
 
