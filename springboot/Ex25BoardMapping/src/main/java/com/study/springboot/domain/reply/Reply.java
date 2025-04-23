@@ -1,5 +1,6 @@
 package com.study.springboot.domain.reply;
 
+import com.study.springboot.domain.board.Board;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -22,18 +23,18 @@ public class Reply {
     private String replyContent; //내용
     @Column(name = "reply_date",nullable = false)
     private LocalDateTime replyDate = LocalDateTime.now();
-    @Column(name = "reply_board_idx",nullable = false)
-    private Long replyBoardIdx; //외래키 FK
+//    @Column(name = "reply_board_idx",nullable = false)
+//    private Long replyBoardIdx; //외래키 FK
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "reply_board_idx",nullable = false)
-//    private Board board;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "reply_board_idx",nullable = false)
+    private Board board;
 
     @Builder
-    public Reply(String replyName,String replyContent, Long replyBoardIdx) {
+    public Reply(String replyName,String replyContent, Board board) {
         this.replyName=replyName;
         this.replyContent=replyContent;
-        this.replyBoardIdx=replyBoardIdx;
+        this.board=board;
     }
     public void update(String replyName,String replyContent) {
         this.replyName=replyName;

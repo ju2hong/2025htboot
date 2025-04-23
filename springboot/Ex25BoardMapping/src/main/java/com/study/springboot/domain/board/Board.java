@@ -1,5 +1,6 @@
 package com.study.springboot.domain.board;
 
+import com.study.springboot.domain.reply.Reply;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -7,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 //@Entity, @Component : 기본생성자가 필요함. 없으면 자동생성
 // fastxml ObjectMapper에서 Class정보를 이용하여 리플렉션을
@@ -34,8 +37,11 @@ public class Board {
     @Column(name = "board_date" , nullable=false)
     private LocalDateTime boardDate =LocalDateTime.now(); //생성 일시, 수정일시
 
-//    @OneToMany(mappedBy = "board")
-//    private List<Reply> replyList = new ArrayList<>();
+    //mappedBy : 연관관계 객체이름
+    //cascade : 전이 - 게시글이 생성될 때 같이 생성되거나 삭제
+    //orphanRemoval : replies 리스트에서 삭제하면 DB에서도 삭제됨
+    @OneToMany(mappedBy = "board" ,cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<Reply> replies = new ArrayList<>();
 
     //선택적 매개변수가 있는 생성자
     @Builder
