@@ -4,7 +4,7 @@ package com.study.springboot.controller;
 import com.study.springboot.dto.BoardResponseDto;
 import com.study.springboot.dto.BoardSaveRequestDto;
 import com.study.springboot.dto.ReplyResponseDto;
-import com.study.springboot.service.BoardService;
+import com.study.springboot.service.BoardService2;
 import com.study.springboot.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/board")
 @RequiredArgsConstructor
 public class BoardController {
-    private final BoardService boardService;
+    private final BoardService2 boardService;
     private final ReplyService replyService;
 
     @GetMapping("/")
