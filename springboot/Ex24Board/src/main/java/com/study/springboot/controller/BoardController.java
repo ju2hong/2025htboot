@@ -43,7 +43,7 @@ public class BoardController {
     //HTTP Bodys(JS)의 값을 받아오는 방법
     //1. @RequestBody
 
-    @PostMapping("writeAction")
+    @PostMapping("/writeAction")
     @ResponseBody
     public String writeAction(@ModelAttribute BoardSaveRequestDto dto) {
         Long newIdx = boardService.save(dto);
