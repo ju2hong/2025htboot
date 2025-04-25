@@ -2,7 +2,6 @@ package com.study.springboot.service;
 
 import com.study.springboot.entity.MemberEntity;
 import com.study.springboot.entity.MemberRepository;
-import com.study.springboot.enumeration.UserRole;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -30,11 +29,7 @@ public class SecurityService implements UserDetailsService {
         MemberEntity memberEntity = optional.get();
 
         List<GrantedAuthority> authorities = new ArrayList<>();
-        if( username.equals("admin") ) {
-            authorities.add(new SimpleGrantedAuthority(UserRole.ADMIN.getValue()));
-        }else{
-            authorities.add(new SimpleGrantedAuthority(UserRole.USER.getValue()));
-        }
+        authorities.add(new SimpleGrantedAuthority(memberEntity.getUser_role()));
         return new User( memberEntity.getUsername(), memberEntity.getPassword(), authorities );
     }
 }
