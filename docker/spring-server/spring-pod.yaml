@@ -1,0 +1,51 @@
+# spring 서버 pod로 띄우기 실습
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: spring-pod
+# spec:
+#   containers:
+#     - name: spring-container
+#       image: spring-server
+#       ports:
+#         - containerPort: 8080
+#       imagePullPolicy: IfNotPresent
+
+#디플로이먼트를 활용해 밴엔드 서버 3개 띄우기
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spring-pod-1
+spec:
+  containers:
+    - name: spring-container
+      image: spring-server
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spring-pod-2
+spec:
+  containers:
+    - name: spring-container
+      image: spring-server
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: spring-pod-3
+spec:
+  containers:
+    - name: spring-container
+      image: spring-server
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 8080

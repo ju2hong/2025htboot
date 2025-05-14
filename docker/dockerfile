@@ -1,0 +1,14 @@
+# JDK 17
+# FROM openjdk:17-jdk
+# ENTRYPOINT [ "/bin/bash", "-c", "sleep 500" ]
+
+# FROM node
+# ENTRYPOINT [ "/bin/bash", "-c", "sleep 500" ]
+
+
+# FROM ubuntu
+# COPY app.txt /app.txt
+# ENTRYPOINT ["/bin/bash", "-c", "sleep 500"] 
+
+FROM ubuntu 
+ENTRYPOINT [ "/bin/bash", "-c", "echo hello" ]
